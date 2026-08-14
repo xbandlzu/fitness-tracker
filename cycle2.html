@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>训练打卡工作台 · 周期2 弹力带+泡沫轴 · 9/5 - 10/2</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #f5f4f2;
+    --card: #ffffff;
+    --primary: #993556;
+    --primary-light: #fbeaf0;
+    --green: #5fa56b;
+    --green-light: #e8f5e9;
+    --blue: #6b8fd5;
+    --blue-light: #e3f2fd;
+    --orange: #e8a93c;
+    --orange-light: #fff8e1;
+    --red: #c44444;
+    --red-light: #fce4ec;
+    --gray: #ccc;
+    --gray-light: #f0f0f0;
+    --text: #2c2c2a;
+    --text-light: #888;
+    --border: #eee;
+  }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+    padding-bottom: 60px;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 600; color: var(--primary); }
+  .header .sub { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+  /* ===== STATS BAR ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .stat-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 10px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .stat-value { font-size: 24px; font-weight: 700; }
+  .stat-value.green { color: var(--green); }
+  .stat-value.orange { color: var(--orange); }
+  .stat-value.blue { color: var(--blue); }
+  .stat-value.red { color: var(--primary); }
+  .stat-label { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+  /* ===== BACKUP BAR ===== */
+  .backup-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: #f3f6f9;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .backup-bar .btns { display: flex; gap: 8px; }
+  .backup-bar button, .backup-bar .import-btn {
+    background: #fff;
+    border: 1px solid #d5dae0;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #333;
+    transition: all .15s;
+  }
+  .backup-bar button:hover, .backup-bar .import-btn:hover { border-color: var(--primary); color: var(--primary); background: #fff7f9; }
+
+  /* ===== TODAY CARD ===== */
+  .today-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 2px solid var(--primary);
+    box-shadow: 0 2px 12px rgba(153, 53, 86, 0.1);
+  }
+  .today-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .today-date { font-size: 18px; font-weight: 600; }
+  .today-date .cycle { font-size: 12px; color: var(--text-light); font-weight: 400; margin-left: 8px; }
+  .today-badge {
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .today-type {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .today-type.train { background: var(--green-light); color: #2e7d32; }
+  .today-type.rest { background: var(--gray-light); color: var(--text-light); }
+  .today-type.active { background: var(--orange-light); color: #e65100; }
+  .today-type.light { background: var(--blue-light); color: #1565c0; }
+  .today-type.split { background: var(--red-light); color: #c62828; }
+
+  /* ===== EXERCISE LIST ===== */
+  .exercise-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .exercise-item:hover { background: #f5f5f5; }
+  .exercise-item.done {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .exercise-item.done .exercise-name { text-decoration: line-through; color: var(--text-light); }
+  .exercise-check {
+    width: 24px; height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .exercise-item.done .exercise-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .exercise-check svg { width: 16px; height: 16px; fill: #fff; opacity: 0; transition: opacity 0.2s; }
+  .exercise-item.done .exercise-check svg { opacity: 1; }
+  .exercise-info { flex: 1; }
+  .exercise-name { font-weight: 600; font-size: 14px; }
+  .exercise-detail { font-size: 12px; color: var(--text-light); }
+  .ex-video {
+    flex-shrink: 0;
+    background: var(--blue-light);
+    color: #1565c0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: 1px solid #bcd4f5;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .ex-video:hover { background: #d2e6fd; }
+  .video-hint {
+    font-size: 12px;
+    color: #1565c0;
+    background: var(--blue-light);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  /* ===== COMPLETE BUTTON ===== */
+  .complete-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .complete-btn.not-done {
+    background: var(--primary);
+    color: #fff;
+  }
+  .complete-btn.not-done:hover { background: #7d2a47; }
+  .complete-btn.done {
+    background: var(--green);
+    color: #fff;
+  }
+  .complete-btn.done:hover { background: #4a8a56; }
+
+  /* ===== TIMER ===== */
+  .timer-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .timer-title { font-size: 16px; font-weight: 600; }
+  .timer-display {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    color: var(--primary);
+    margin: 8px 0 12px;
+  }
+  .timer-phases {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .timer-phase {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--gray-light);
+    color: var(--text-light);
+  }
+  .timer-phase.active { background: var(--primary); color: #fff; }
+  .timer-phase.done { background: var(--green-light); color: var(--green); }
+  .timer-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  .timer-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .timer-btn.start { background: var(--green); color: #fff; }
+  .timer-btn.start:hover { background: #4a8a56; }
+  .timer-btn.pause { background: var(--orange); color: #fff; }
+  .timer-btn.reset { background: var(--gray-light); color: var(--text); }
+
+  /* ===== PROTEIN TRACKER ===== */
+  .protein-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .protein-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .protein-title { font-size: 16px; font-weight: 600; }
+  .protein-total { font-size: 20px; font-weight: 700; color: var(--primary); }
+  .protein-total .goal { font-size: 14px; color: var(--text-light); font-weight: 400; }
+  .protein-bar-bg {
+    height: 12px;
+    background: var(--gray-light);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .protein-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4537e, #e87aa0);
+    border-radius: 6px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+  .protein-bar-fill.complete { background: var(--green); }
+  .protein-meals {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .protein-meal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+  }
+  .protein-meal:hover { background: #f5f5f5; }
+  .protein-meal.done { background: var(--green-light); border-color: var(--green); }
+  .meal-check {
+    width: 22px; height: 22px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .protein-meal.done .meal-check { background: var(--green); border-color: var(--green); }
+  .meal-check svg { width: 14px; height: 14px; fill: #fff; opacity: 0; }
+  .protein-meal.done .meal-check svg { opacity: 1; }
+  .meal-info { flex: 1; }
+  .meal-name { font-weight: 600; font-size: 13px; }
+  .meal-amount { font-size: 11px; color: var(--text-light); }
+
+  /* ===== CALENDAR ===== */
+  .calendar-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .calendar-title { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    border: 2px solid transparent;
+  }
+  .cal-day:hover { transform: scale(1.08); }
+  .cal-day .cal-date { font-size: 11px; font-weight: 600; }
+  .cal-day .cal-label { font-size: 8px; color: var(--text-light); text-align: center; line-height: 1.1; margin-top: 1px; }
+  .cal-day.train { background: var(--green-light); border-color: var(--green); }
+  .cal-day.rest { background: var(--gray-light); }
+  .cal-day.active { background: var(--orange-light); border-color: var(--orange); }
+  .cal-day.light { background: var(--blue-light); border-color: var(--blue); }
+  .cal-day.split { background: var(--red-light); border-color: var(--red); }
+  .cal-day.completed { opacity: 1; }
+  .cal-day.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 2px; right: 4px;
+    font-size: 10px;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .cal-day.completed .cal-label { color: var(--green); }
+  .cal-day.today { box-shadow: 0 0 0 3px rgba(153, 53, 86, 0.3); }
+  .cal-day.future { opacity: 0.5; }
+  .cal-day.future:hover { opacity: 0.8; }
+  .cal-wd {
+    position: absolute;
+    top: 2px; left: 4px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #c46a8a;
+  }
+  .cal-day.weekend { border-style: dashed; }
+  .cal-day.off-rest { opacity: 0.75; }
+  .cal-day.off-rest .cal-label { color: var(--blue); font-weight: 700; }
+
+  /* Calendar legend */
+  .cal-legend {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;
+    font-size: 11px; color: var(--text-light);
+  }
+  .cal-legend-item { display: flex; align-items: center; gap: 4px; }
+  .cal-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* ===== NOTES ===== */
+  .notes-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .notes-title { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .notes-input {
+    width: 100%;
+    min-height: 60px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+    background: #fafafa;
+  }
+  .notes-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+  }
+
+  /* ===== RESET BTN ===== */
+  .reset-all {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .reset-all-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .reset-all-btn:hover { color: var(--red); border-color: var(--red); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .protein-meals { grid-template-columns: 1fr; }
+    .calendar-grid { gap: 3px; }
+    .cal-day { font-size: 9px; }
+    .cal-day .cal-date { font-size: 10px; }
+    .cal-day .cal-label { font-size: 7px; }
+    .timer-display { font-size: 36px; }
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    z-index: 999;
+    transition: transform 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { background: var(--green); }
+  .toast.celebrate { background: var(--primary); font-size: 16px; padding: 16px 32px; }
+
+  /* ===== GOALS CARD ===== */
+  .goals-card {
+    background: linear-gradient(135deg, #993556 0%, #c0627f 100%);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .goals-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .goals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .goal-item {
+    background: rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .goal-item .goal-num { font-size: 17px; font-weight: 700; line-height: 1.3; }
+  .goal-item .goal-label { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+
+  /* ===== DAILY SCHEDULE ===== */
+  .schedule-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .schedule-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+  .schedule-title .tag { font-size: 11px; font-weight: 400; color: var(--text-light); margin-left: 6px; }
+  .schedule-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sched-chip {
+    display: flex; align-items: center; gap: 6px;
+    background: #fafafa;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+  .sched-chip .t { font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; }
+  .sched-chip.train-chip { background: var(--green-light); border-color: var(--green); }
+  .sched-chip.rest-chip { background: var(--orange-light); border-color: var(--orange); }
+  .sched-chip.sleep-chip { background: var(--blue-light); border-color: var(--blue); }
+  .sched-arrow { color: #ccc; font-size: 11px; align-self: center; }
+
+  /* ===== WEEKEND FLEX RULES ===== */
+  .flex-rules {
+    background: #fffaf2;
+    border: 1px dashed #e8a93c;
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .flex-rules-title { font-size: 15px; font-weight: 600; color: #8a5a10; margin-bottom: 10px; }
+  .flex-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .flex-rule {
+    background: #fff;
+    border: 1px solid #f0dfc0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .flex-rule b { display: block; margin-bottom: 3px; color: #c07f14; }
+  .flex-rules-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #a0742a;
+    background: #fdf3e0;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  /* ===== FLEX MODE BUTTONS (mini / rest) ===== */
+  .flex-mode-btns { display: flex; gap: 8px; margin-top: 10px; }
+  .flex-btn {
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #fafafa;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .flex-btn:hover { transform: translateY(-1px); }
+  .flex-btn.mini:hover { border-color: var(--orange); color: #b46a00; }
+  .flex-btn.rest:hover { border-color: var(--blue); color: #3a63b0; }
+  .flex-btn.mini.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .flex-btn.rest.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .flex-mode-status {
+    font-size: 12px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .flex-mode-status.mini { background: var(--orange-light); color: #8a5a10; }
+  .flex-mode-status.rest { background: var(--blue-light); color: #3a63b0; }
+
+  /* ===== HEART RATE BANNER ===== */
+  .hr-banner {
+    background: linear-gradient(135deg, #fbeaf0 0%, #fdeef4 100%);
+    border: 1px solid #e8b7c8;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 12px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hr-banner .hr-icon {
+    width: 40px; height: 40px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hr-banner .hr-icon svg { width: 22px; height: 22px; }
+  .hr-banner .hr-range { font-size: 20px; font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; }
+  .hr-banner .hr-range .unit { font-size: 12px; font-weight: 400; }
+  .hr-banner .hr-text { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+  .hr-banner .hr-text b { color: var(--text); }
+  @media (max-width: 640px) {
+    .goals-grid { grid-template-columns: repeat(2, 1fr); }
+    .hr-banner { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>训练打卡工作台</h1>
+    <div class="sub">9月5日 - 10月2日 · 28天周期 · 弹力带+泡沫轴版 · 每天40分钟 · 蛋白质90g</div>
+  </div>
+
+  <!-- BACKUP BAR -->
+  <div class="backup-bar">
+    <span>💾 数据备份：换电脑/浏览器前先「导出」，新环境打开后点「导入」即可恢复全部打卡记录（两个周期一起备份）。</span>
+    <span class="btns">
+      <button onclick="exportData()">⬇ 导出备份</button>
+      <label class="import-btn">⬆ 导入备份<input type="file" accept=".json,.txt" style="display:none" onchange="importData(event)"></label>
+    </span>
+  </div>
+
+  <!-- CYCLE SWITCHER -->
+  <div style="display:flex; gap:8px; margin-bottom:16px;">
+    <a href="./index.html" style="flex:1; text-align:center; padding:12px 8px; border-radius:12px; background:#fff; border:1px solid #e5e5e5; color:#333; font-size:13px; font-weight:600; text-decoration:none; display:block;">
+      周期1 · 徒手版<span style="display:block; font-size:11px; font-weight:400; color:#888; margin-top:2px;">8/15-9/4 · 上一周期</span>
+    </a>
+    <div style="flex:1; text-align:center; padding:12px 8px; border-radius:12px; background:#993556; color:#fff; font-size:13px; font-weight:600; box-shadow:0 2px 8px rgba(153,53,86,.25);">
+      周期2 · 弹力带泡沫轴<span style="display:block; font-size:11px; font-weight:400; opacity:.85; margin-top:2px;">9/5-10/2 · 现在进行中</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="note-banner" style="background:#fff8e1; border:1px solid #f0d48a; border-radius:12px; padding:10px 16px; margin-bottom:16px; font-size:13px; color:#7a5b12;">
+    💪 <b>本周期 · 弹力带+泡沫轴版：</b>建议入手中等阻力弹力带（15-25磅）+ 泡沫轴（平滑款）。动作旁的 ▶ 视频可跟练，弹力带划船/面拉跟练欧阳春晓弹力带练背。
+  </div>
+
+  <!-- GOALS -->
+  <div class="goals-card">    <div class="goals-title">🎯 计划目标 · 周期2</div>
+    <div class="goals-grid">
+      <div class="goal-item">
+        <div class="goal-num">129斤 → 120-122斤</div>
+        <div class="goal-label">减脂目标不变 · 温和缺口</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">阻力进阶</div>
+        <div class="goal-label">徒手 → 弹力带加阻</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">恢复升级</div>
+        <div class="goal-label">泡沫轴放松训练后肌肉</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">坚持打卡</div>
+        <div class="goal-label">28天完成率 ≥ 80%</div>
+      </div>
+    </div></div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">肌肉抗老</div>
+        <div class="goal-label">肌肉是女性最低成本的抗老</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">力量进阶</div>
+        <div class="goal-label">动作逐个升级 · 每28天一阶</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-num">坚持打卡</div>
+        <div class="goal-label">21天周期完成率 ≥ 80%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value green" id="stat-completed">0</div>
+      <div class="stat-label">已完成训练</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value orange" id="stat-streak">0</div>
+      <div class="stat-label">连续打卡</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value blue" id="stat-rate">0%</div>
+      <div class="stat-label">完成率</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value red" id="stat-protein">0/90</div>
+      <div class="stat-label">今日蛋白质</div>
+    </div>
+  </div>
+
+  <!-- TODAY -->
+  <div class="today-section" id="today-section">
+    <div class="today-header">
+      <div class="today-date" id="today-date">加载中...</div>
+      <div class="today-badge">今天</div>
+    </div>
+    <div id="today-content"></div>
+  </div>
+
+  <!-- DAILY SCHEDULE -->
+  <div class="schedule-card">
+    <div class="schedule-title">⏰ 每日时间安排 <span class="tag">训练日 · 固定节奏</span></div>
+    <div class="schedule-chips">
+      <div class="sched-chip"><span class="t">08:00</span>起床</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">08:10 / 09:00</span>早餐</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">09:30</span>上班</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">11:40</span>午餐</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">15:00</span>下午加餐</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">18:30</span>下班</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">19:00</span>晚餐</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip rest-chip"><span class="t">~20:30</span>辅导孩子</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip train-chip"><span class="t">21:30-22:10</span>训练40min</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">22:10</span>洗澡</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip"><span class="t">22:30</span>护肤</div>
+      <div class="sched-arrow">→</div>
+      <div class="sched-chip sleep-chip"><span class="t">23:00</span>入睡</div>
+    </div>
+  </div>
+
+  <!-- WEEKEND FLEX RULES -->
+  <div class="flex-rules">
+    <div class="flex-rules-title">🏖️ 周末 / 节假日 · 三种模式任选</div>
+    <div class="flex-rules-grid">
+      <div class="flex-rule"><b>🏠 在家有空</b>训练挪到白天（10:00 / 15:00 都行），晚上不用练，或照常 21:30</div>
+      <div class="flex-rule"><b>🎉 出门 / 聚会</b>用 15分钟迷你版：臀桥3×15 + 死虫式3×10 + 靠墙滑墙3×10</div>
+      <div class="flex-rule"><b>😴 很累 / 出游</b>直接休息——休息不算失败，不打断连击，好好补觉</div>
+    </div>
+    <div class="flex-rules-note">📌 铁律：可挪不可丢 · 连续休息不超过2天 · 蛋白质照常90g · 周末撞上经期第1-2天 = 天然休息日</div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-section">
+    <div class="timer-header">
+      <div class="timer-title">训练计时器</div>
+    </div>
+    <div class="timer-display" id="timer-display">40:00</div>
+    <div class="hr-banner">
+      <div class="hr-icon">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 21s-7.5-4.9-10-9.5C.4 8.3 2.3 4.8 5.7 4.2c2-.4 4 .5 5.3 2.2 0 0 0-.2 1-.2s1 .2 1 .2c1.3-1.7 3.3-2.6 5.3-2.2 3.4.6 5.3 4.1 3.7 7.3C19.5 16.1 12 21 12 21z"/></svg>
+      </div>
+      <div>
+        <div class="hr-range">119 ~ 137 <span class="unit">次/分钟</span></div>
+        <div class="hr-text">训练时保持这个<b>中等强度心率区间</b>（约最大心率的 65%-75%）。<br>自测：运动时能说完整句子、但没法唱歌，就是刚好。强度太低没效果，喘到说不出话就降一点。</div>
+      </div>
+    </div>
+    <div class="timer-phases" id="timer-phases">
+      <div class="timer-phase" data-phase="warmup">热身 5min</div>
+      <div class="timer-phase" data-phase="main">主训练 30min</div>
+      <div class="timer-phase" data-phase="stretch">拉伸 5min</div>
+    </div>
+    <div class="timer-controls">
+      <button class="timer-btn start" id="timer-start" onclick="startTimer()">开始</button>
+      <button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">暂停</button>
+      <button class="timer-btn reset" onclick="resetTimer()">重置</button>
+    </div>
+  </div>
+
+  <!-- PROTEIN -->
+  <div class="protein-section">
+    <div class="protein-header">
+      <div class="protein-title">🍽️ 今日饮食安排 · 蛋白质 <span class="goal">90g/天</span></div>
+      <div class="protein-total"><span id="protein-current">0</span>g <span class="goal">/ 90g</span></div>
+    </div>
+    <div style="font-size:12px; color:#aaa; margin-bottom:10px;">热量目标约 1500 kcal · 每餐分配：早25g / 午38g / 晚27g / 加餐10g · 练完勾一餐</div>
+    <div class="protein-bar-bg">
+      <div class="protein-bar-fill" id="protein-bar"></div>
+    </div>
+    <div class="protein-meals" id="protein-meals"></div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="calendar-section">
+    <div class="calendar-title">28天日历总览 · 点击任意日期查看详情</div>
+    <div class="calendar-grid" id="calendar-grid"></div>
+    <div class="cal-legend">
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#5fa56b;"></span>训练日</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#e8a93c;"></span>主动恢复</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#6b8fd5;"></span>轻量</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#c44444;"></span>分化</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#ccc;"></span>休息</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#993556;"></span>今天</span>
+      <span class="cal-legend-item">✓ 已完成</span>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="notes-section">
+    <div class="notes-title">今日备注</div>
+    <textarea class="notes-input" id="notes-input" placeholder="记录今天的训练感受、身体状况、睡眠质量等..." oninput="saveNote()"></textarea>
+  </div>
+
+  <div class="reset-all">
+    <button class="reset-all-btn" onclick="resetAll()">重置所有打卡数据</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+const PLAN = [
+  { date:"2026-09-05", cycleDay:1, type:"rest", phase:"经期", title:"经期休息", exercises:[] },
+  { date:"2026-09-06", cycleDay:2, type:"rest", phase:"经期", title:"经期休息", exercises:[] },
+  { date:"2026-09-07", cycleDay:3, type:"active", phase:"经期", title:"八段锦+拉伸", exercises:[
+    {name:"八段锦", detail:"12分钟 · 国家体育总局版"},{name:"拉伸/散步20min", detail:"轻松舒缓"}]},
+  { date:"2026-09-08", cycleDay:4, type:"active", phase:"经期", title:"散步+泡沫轴轻压", exercises:[
+    {name:"散步20min", detail:"轻松步伐"},{name:"散步+泡沫轴轻压", detail:"泡沫轴轻压大腿/小腿 · 力度轻柔"}]},
+  { date:"2026-09-09", cycleDay:5, type:"light", phase:"经期", title:"轻量激活", exercises:[
+    {name:"弹力带划船", detail:"3组×10次 · 轻阻力"},{name:"臀桥", detail:"3组×12次 · 徒手"}]},
+  { date:"2026-09-10", cycleDay:6, type:"active", phase:"经期", title:"拉伸+泡沫轴", exercises:[
+    {name:"拉伸/散步20min", detail:"舒缓"},{name:"拉伸+泡沫轴腿部放松", detail:"滚大腿前/后侧 各30秒×2"}]},
+  { date:"2026-09-11", cycleDay:7, type:"train", phase:"卵泡期", title:"训练A · 弹力带", exercises:[
+    {name:"弹力带划船", detail:"3组×12次 · 脚踩带坐姿拉夹肩胛"},{name:"弹力带面拉", detail:"3组×12次 · 拉向面部肘抬高"},
+    {name:"靠墙滑墙", detail:"3组×12次"},{name:"死虫式", detail:"3组×10次/侧"},
+    {name:"平板支撑", detail:"3组×30秒"}]},
+  { date:"2026-09-12", cycleDay:8, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
+  { date:"2026-09-13", cycleDay:9, type:"train", phase:"卵泡期", title:"训练B · 弹力带", exercises:[
+    {name:"弹力带深蹲", detail:"3组×12次 · 带子套膝上或踩脚下"},{name:"弹力带臀桥", detail:"3组×15次 · 带子压髋部" },
+    {name:"跪姿俯卧撑", detail:"3组×10次"},{name:"弹力带侧平举", detail:"3组×10次"},
+    {name:"鸟狗式", detail:"3组×10次/侧"}]},
+  { date:"2026-09-14", cycleDay:10, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
+  { date:"2026-09-15", cycleDay:11, type:"train", phase:"卵泡期", title:"训练A+ 进阶", exercises:[
+    {name:"弹力带划船", detail:"3组×15次 · 加量"},{name:"弹力带面拉", detail:"3组×15次 · 加量"},
+    {name:"死虫式", detail:"3组×12次/侧"},{name:"平板支撑", detail:"3组×40秒"}]},
+  { date:"2026-09-16", cycleDay:12, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
+  { date:"2026-09-17", cycleDay:13, type:"train", phase:"卵泡期", title:"训练B+ 进阶", exercises:[
+    {name:"弹力带深蹲", detail:"3组×15次 · 加量"},{name:"弹力带臀桥", detail:"3组×15次"},
+    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
+  { date:"2026-09-18", cycleDay:14, type:"active", phase:"卵泡期", title:"主动恢复 · 泡沫轴", exercises:[
+    {name:"泡沫轴全身放松", detail:"滚背/臀/大腿 各30秒×2 · 最全泡沫轴跟练"}]},
+  { date:"2026-09-19", cycleDay:15, type:"split", phase:"排卵期", title:"上肢拉+核心", exercises:[
+    {name:"弹力带划船", detail:"3组×15次"},{name:"弹力带面拉", detail:"3组×12次 · 肘抬高"},
+    {name:"平板支撑", detail:"3组×40秒"},{name:"死虫式", detail:"3组×12次/侧"}]},
+  { date:"2026-09-20", cycleDay:16, type:"rest", phase:"排卵期", title:"休息", exercises:[] },
+  { date:"2026-09-21", cycleDay:17, type:"split", phase:"排卵期", title:"下肢+上肢推", exercises:[
+    {name:"弹力带深蹲", detail:"3组×15次 · 膝盖不内扣"},{name:"弹力带臀桥", detail:"3组×15次"},
+    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
+  { date:"2026-09-22", cycleDay:18, type:"rest", phase:"排卵期", title:"休息", exercises:[] },
+  { date:"2026-09-23", cycleDay:19, type:"split", phase:"排卵期", title:"上肢拉+核心", exercises:[
+    {name:"弹力带划船", detail:"3组×15次 · 同D15"},{name:"弹力带面拉", detail:"3组×12次"},
+    {name:"平板支撑", detail:"3组×40秒"},{name:"死虫式", detail:"3组×12次/侧"}]},
+  { date:"2026-09-24", cycleDay:20, type:"split", phase:"排卵期", title:"下肢+上肢推", exercises:[
+    {name:"弹力带深蹲", detail:"3组×15次 · 同D17"},{name:"弹力带臀桥", detail:"3组×15次"},
+    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
+  { date:"2026-09-25", cycleDay:21, type:"active", phase:"排卵期", title:"主动恢复 · 泡沫轴", exercises:[
+    {name:"泡沫轴全身+拉伸", detail:"全身放松 + 拉伸"}]},
+  { date:"2026-09-26", cycleDay:22, type:"light", phase:"黄体期", title:"轻量上肢", exercises:[
+    {name:"弹力带划船", detail:"3组×12次 · 轻量"},{name:"靠墙滑墙", detail:"3组×12次 · 轻量"}]},
+  { date:"2026-09-27", cycleDay:23, type:"rest", phase:"黄体期", title:"休息", exercises:[] },
+  { date:"2026-09-28", cycleDay:24, type:"light", phase:"黄体期", title:"轻量下肢", exercises:[
+    {name:"弹力带臀桥", detail:"3组×12次"},{name:"扶椅深蹲", detail:"3组×10次"}]},
+  { date:"2026-09-29", cycleDay:25, type:"rest", phase:"黄体期", title:"休息", exercises:[] },
+  { date:"2026-09-30", cycleDay:26, type:"light", phase:"黄体期", title:"轻量全身", exercises:[
+    {name:"弹力带划船", detail:"3组×10次"},{name:"臀桥", detail:"3组×12次"},{name:"死虫式", detail:"3组×8次/侧"}]},
+  { date:"2026-10-01", cycleDay:27, type:"active", phase:"黄体期", title:"八段锦+拉伸", exercises:[
+    {name:"八段锦+拉伸20min", detail:"为经期做准备"}]},
+  { date:"2026-10-02", cycleDay:28, type:"rest", phase:"黄体期", title:"充分休息", exercises:[] },
+];
+
+// 动作 → 跟练视频（B站），渲染时自动匹配动作名
+const VIDEO_MAP = {
+  "八段锦": "https://www.bilibili.com/video/BV1x7nkzeEyE",
+  "八段锦+拉伸20min": "https://www.bilibili.com/video/BV1x7nkzeEyE",
+  "弹力带划船": "https://www.bilibili.com/video/BV1fa4y1y7Vg",
+  "弹力带面拉": "https://www.bilibili.com/video/BV1fa4y1y7Vg",
+  "靠墙滑墙": "https://www.bilibili.com/video/BV1yjuC6XEhb",
+  "死虫式": "https://www.bilibili.com/video/BV1Pwud6XEFX",
+  "平板支撑": "https://www.bilibili.com/video/BV1Q34y1j79r",
+  "弹力带深蹲": "https://www.bilibili.com/video/BV1Lx411o7m2",
+  "弹力带臀桥": "https://www.bilibili.com/video/BV1kF411F7YG",
+  "跪姿俯卧撑": "https://www.bilibili.com/video/BV1eJud6gEYR",
+  "弹力带侧平举": "https://www.bilibili.com/video/BV1rK4y1f75C",
+  "鸟狗式": "https://www.bilibili.com/video/BV1ne411W7MV",
+  "扶椅深蹲": "https://www.bilibili.com/video/BV1o22aBPEM9",
+  "臀桥": "https://www.bilibili.com/video/BV1kF411F7YG",
+  "泡沫轴全身放松": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
+  "泡沫轴全身+拉伸": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
+  "拉伸+泡沫轴腿部放松": "https://www.bilibili.com/video/BV1Z7411D7Ny",
+  "散步+泡沫轴轻压": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
+  "拉伸/散步20min": "https://b23.tv/BV1r7411H7jL",
+  "散步20min": "https://b23.tv/BV1r7411H7jL",
+};
+
+const PROTEIN_MEALS = [
+  { key:"breakfast", name:"早餐", amount:"25g", detail:"水煮蛋2个(12g)+牛奶250ml(8g)+花生酱全麦面包1片(5g)", time:"08:10 或 09:00-09:30" },
+  { key:"lunch", name:"午餐", amount:"38g", detail:"鸡胸肉150g(36g)+杂粮饭+大量蔬菜", time:"11:40" },
+  { key:"dinner", name:"晚餐", amount:"27g", detail:"虾仁120g(24g)+豆腐(4g)+蔬菜+半碗饭", time:"19:00" },
+  { key:"snack", name:"下午加餐", amount:"10g", detail:"鸡蛋1个(6g)+坚果一小把(4g)", time:"15:00左右" },
+];
+
+const PHASE_DURATIONS = { warmup: 5*60, main: 30*60, stretch: 5*60 };
+const TOTAL_DURATION = 40*60;
+
+// ===== STATE =====
+let state = JSON.parse(localStorage.getItem('trainingTracker') || 'null');
+if (!state) {
+  state = {
+    exercises: {}, // { "2026-08-15-0": true, ... }
+    dayCompleted: {}, // { "2026-08-15": true, ... }
+    protein: {}, // { "2026-08-15": { breakfast: true, lunch: true, ... } }
+    notes: {}, // { "2026-08-15": "今天感觉..." }
+    mode: {}, // { "2026-08-15": "mini" | "rest" } 节假日弹性标记
+  };
+}
+// 兼容旧版数据（没有 mode 字段）
+if (!state.mode) state.mode = {};
+if (!state.notes) state.notes = {};
+
+function saveState() {
+  localStorage.setItem('trainingTracker', JSON.stringify(state));
+}
+
+// ===== 数据备份 / 恢复（跨设备迁移）=====
+function exportData() {
+  const payload = {
+    app: 'training-tracker',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    data: state
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '健身打卡备份_' + todayStr() + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert('✅ 备份已下载！请把这份 JSON 文件保存好。\n\n换电脑/浏览器后：打开工作台 → 点「⬆ 导入备份」→ 选择这个文件，打卡记录就全部恢复了。');
+}
+
+function importData(ev) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const payload = JSON.parse(e.target.result);
+      if (!payload || !payload.data || payload.app !== 'training-tracker') {
+        alert('❌ 文件格式不对，请选择之前从工作台导出的备份文件（.json）。');
+        return;
+      }
+      if (!confirm('导入会覆盖当前浏览器里的打卡数据，确定继续吗？')) return;
+      state = {
+        exercises: payload.data.exercises || {},
+        dayCompleted: payload.data.dayCompleted || {},
+        protein: payload.data.protein || {},
+        notes: payload.data.notes || {},
+        mode: payload.data.mode || {},
+      };
+      saveState();
+      renderToday(todayStr());
+      renderCalendar();
+      alert('✅ 导入成功！打卡记录已全部恢复。');
+    } catch (err) {
+      alert('❌ 读取文件失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  ev.target.value = '';
+}
+
+function todayStr() {
+  const now = new Date();
+  // Use local date
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function getDayData(dateStr) {
+  return PLAN.find(d => d.date === dateStr);
+}
+
+function isFuture(dateStr) {
+  return dateStr > todayStr();
+}
+
+function isToday(dateStr) {
+  return dateStr === todayStr();
+}
+
+// ===== RENDER TODAY =====
+let currentViewDate = todayStr();
+
+function renderToday(dateStr) {
+  currentViewDate = dateStr;
+  const day = getDayData(dateStr);
+  if (!day) return;
+
+  const todayEl = document.getElementById('today-date');
+  const isTodayFlag = isToday(dateStr);
+  const dateObj = new Date(dateStr);
+  const weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
+  const wd = weekdays[dateObj.getDay()];
+  const dateLabel = `${dateObj.getMonth()+1}月${dateObj.getDate()}日 ${wd}`;
+  todayEl.innerHTML = `${dateLabel} <span class="cycle">周期第${day.cycleDay}天 · ${day.phase}</span>`;
+
+  // Update badge
+  const badge = document.querySelector('.today-badge');
+  if (isTodayFlag) {
+    badge.textContent = '今天';
+    badge.style.display = 'inline-block';
+  } else {
+    badge.textContent = isFuture(dateStr) ? '未来' : '回顾';
+    badge.style.background = isFuture(dateStr) ? '#ccc' : '#5fa56b';
+    badge.style.display = 'inline-block';
+  }
+
+  const contentEl = document.getElementById('today-content');
+  const typeClass = day.type;
+  let html = `<div class="today-type ${typeClass}">${day.title}</div>`;
+
+  if (day.exercises.length === 0) {
+    // Rest day
+    const isDone = state.dayCompleted[dateStr];
+    html += `
+      <div style="padding:20px; text-align:center; background:#fafafa; border-radius:10px; margin-bottom:14px;">
+        <div style="font-size:16px; color:#888;">休息日 · 让肌肉修复</div>
+        <div style="font-size:12px; color:#aaa; margin-top:4px;">多喝水、好好睡觉、蛋白质照常90g</div>
+      </div>
+      <button class="complete-btn ${isDone ? 'done' : 'not-done'}" onclick="toggleDayComplete('${dateStr}')">
+        ${isDone ? '✓ 今日已打卡' : '打卡确认休息'}
+      </button>
+    `;
+  } else {
+    // Training day
+    html += '<div class="video-hint">🎬 点动作旁的 <b>▶ 视频</b> 看讲解/跟练，练完一个勾一个</div>';
+    html += '<div class="exercise-list">';
+    day.exercises.forEach((ex, i) => {
+      const key = `${dateStr}-${i}`;
+      const done = state.exercises[key];
+      const video = VIDEO_MAP[ex.name];
+      const videoLink = video
+        ? `<a class="ex-video" href="${video}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 视频</a>`
+        : '';
+      html += `
+        <div class="exercise-item ${done ? 'done' : ''}" onclick="toggleExercise('${dateStr}', ${i})">
+          <div class="exercise-check">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div class="exercise-info">
+            <div class="exercise-name">${ex.name}</div>
+            <div class="exercise-detail">${ex.detail}</div>
+          </div>
+          ${videoLink}
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    const allDone = day.exercises.every((_, i) => state.exercises[`${dateStr}-${i}`]);
+    const isDone = state.dayCompleted[dateStr];
+    const mode = state.mode[dateStr];
+    if (mode === 'mini') {
+      html += `<div class="flex-mode-status mini">🕐 已标记迷你版打卡 · 动了就比不动强！<br><span style="font-size:11px;opacity:.8;">点下方按钮可取消标记</span></div>`;
+      html += `<button class="complete-btn done" onclick="toggleDayComplete('${dateStr}')">✓ 迷你版已完成！</button>`;
+    } else if (mode === 'rest') {
+      html += `<div class="flex-mode-status rest">😴 今日已标记主动休息 · 休息也是计划的一部分<br><span style="font-size:11px;opacity:.8;">点下方按钮可取消标记</span></div>`;
+      html += `<button class="complete-btn done" onclick="toggleDayComplete('${dateStr}')">✓ 已标记休息</button>`;
+    } else if (allDone && !isDone) {
+      html += `<button class="complete-btn not-done" onclick="toggleDayComplete('${dateStr}')">全部完成！点击打卡 ✓</button>`;
+    } else if (isDone) {
+      html += `<button class="complete-btn done" onclick="toggleDayComplete('${dateStr}')">✓ 今日训练已完成！</button>`;
+    } else {
+      html += `<div style="text-align:center; color:#aaa; font-size:13px; padding:8px;">完成全部动作后点击打卡</div>`;
+    }
+
+    // 节假日弹性按钮（仅训练日显示）
+    const miniActive = mode === 'mini' ? ' active' : '';
+    const restActive = mode === 'rest' ? ' active' : '';
+    html += `<div class="flex-mode-btns">
+      <button class="flex-btn mini${miniActive}" onclick="markMini('${dateStr}')">🕐 迷你版 15min</button>
+      <button class="flex-btn rest${restActive}" onclick="markRest('${dateStr}')">😴 主动休息</button>
+    </div>`;
+    if (!mode) {
+      html += `<div style="text-align:center; color:#bbb; font-size:11px; padding:6px 0 0;">周末/节假日没空练？选迷你版；太累就休息——都不打断连击</div>`;
+    }
+  }
+
+  contentEl.innerHTML = html;
+
+  // Load note
+  document.getElementById('notes-input').value = state.notes[dateStr] || '';
+
+  // Update timer phases for this day
+  updateTimerPhases(day);
+
+  // Re-render protein for this date
+  renderProtein(dateStr);
+}
+
+// ===== EXERCISE TOGGLE =====
+function toggleExercise(dateStr, idx) {
+  const key = `${dateStr}-${idx}`;
+  state.exercises[key] = !state.exercises[key];
+  saveState();
+  renderToday(dateStr);
+  updateStats();
+
+  // Check if all done
+  const day = getDayData(dateStr);
+  if (day.exercises.length > 0) {
+    const allDone = day.exercises.every((_, i) => state.exercises[`${dateStr}-${i}`]);
+    if (allDone && !state.dayCompleted[dateStr]) {
+      showToast('全部动作完成！点击打卡按钮确认 ✨', 'success');
+    }
+  }
+}
+
+// ===== DAY COMPLETE TOGGLE =====
+function toggleDayComplete(dateStr) {
+  const wasDone = state.dayCompleted[dateStr];
+  // 当天是弹性标记（迷你/休息）：点击主按钮 = 取消标记，恢复常规打卡
+  if (state.mode[dateStr]) {
+    delete state.mode[dateStr];
+    state.dayCompleted[dateStr] = false;
+    saveState();
+    renderToday(dateStr);
+    updateStats();
+    renderCalendar();
+    showToast('已取消弹性标记，恢复常规打卡', 'success');
+    return;
+  }
+  state.dayCompleted[dateStr] = !wasDone;
+  saveState();
+  renderToday(dateStr);
+  updateStats();
+  renderCalendar();
+
+  if (!wasDone) {
+    // Just completed
+    const day = getDayData(dateStr);
+    if (day.type === 'rest' || day.type === 'active') {
+      showToast('打卡成功！休息也是计划的一部分 💪', 'success');
+    } else {
+      showToast('训练打卡成功！肌肉在休息中生长 🎉', 'celebrate');
+    }
+  }
+}
+
+// ===== FLEX MODE: MINI (15min) =====
+function markMini(dateStr) {
+  const mode = state.mode[dateStr];
+  if (mode === 'mini') {
+    // 取消
+    delete state.mode[dateStr];
+    state.dayCompleted[dateStr] = false;
+    saveState();
+    renderToday(dateStr);
+    updateStats();
+    renderCalendar();
+    showToast('已取消迷你版标记', 'success');
+    return;
+  }
+  if (!confirm('15分钟迷你版：\n臀桥 3×15 + 死虫式 3×10 + 靠墙滑墙 3×10\n\n练完点确定，标记为迷你完成 ✓')) return;
+  state.mode[dateStr] = 'mini';
+  state.dayCompleted[dateStr] = true;
+  saveState();
+  renderToday(dateStr);
+  updateStats();
+  renderCalendar();
+  showToast('迷你版打卡成功！动了就比不动强 💪', 'success');
+}
+
+// ===== FLEX MODE: REST (主动休息) =====
+function markRest(dateStr) {
+  const mode = state.mode[dateStr];
+  if (mode === 'rest') {
+    // 取消
+    delete state.mode[dateStr];
+    state.dayCompleted[dateStr] = false;
+    saveState();
+    renderToday(dateStr);
+    updateStats();
+    renderCalendar();
+    showToast('已取消休息标记', 'success');
+    return;
+  }
+  if (!confirm('今天主动休息？\n\n休息也是计划的一部分，不会打断连击 ✨')) return;
+  state.mode[dateStr] = 'rest';
+  state.dayCompleted[dateStr] = true;
+  saveState();
+  renderToday(dateStr);
+  updateStats();
+  renderCalendar();
+  showToast('已标记休息，好好放松 🌙', 'success');
+}
+
+// ===== PROTEIN =====
+function renderProtein(dateStr) {
+  const todayProtein = state.protein[dateStr] || {};
+  let current = 0;
+  let html = '';
+  PROTEIN_MEALS.forEach(meal => {
+    const done = todayProtein[meal.key];
+    if (done) current += parseInt(meal.amount);
+    html += `
+      <div class="protein-meal ${done ? 'done' : ''}" onclick="toggleProtein('${dateStr}', '${meal.key}')">
+        <div class="meal-check">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <div class="meal-info">
+          <div class="meal-name">${meal.name} · ${meal.amount}</div>
+          <div class="meal-amount">${meal.detail} · ${meal.time}</div>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('protein-meals').innerHTML = html;
+  document.getElementById('protein-current').textContent = current;
+  const bar = document.getElementById('protein-bar');
+  const pct = Math.min(100, (current / 90) * 100);
+  bar.style.width = pct + '%';
+  bar.className = 'protein-bar-fill' + (current >= 90 ? ' complete' : '');
+}
+
+function toggleProtein(dateStr, mealKey) {
+  if (!state.protein[dateStr]) state.protein[dateStr] = {};
+  state.protein[dateStr][mealKey] = !state.protein[dateStr][mealKey];
+  saveState();
+  renderProtein(dateStr);
+  updateStats();
+
+  const todayP = state.protein[dateStr] || {};
+  let total = 0;
+  PROTEIN_MEALS.forEach(m => { if (todayP[m.key]) total += parseInt(m.amount); });
+  if (total >= 90) {
+    showToast('蛋白质达标！90g ✓', 'success');
+  }
+}
+
+// ===== NOTES =====
+function saveNote() {
+  state.notes[currentViewDate] = document.getElementById('notes-input').value;
+  saveState();
+}
+
+// ===== STATS =====
+function updateStats() {
+  const today = todayStr();
+  const trainDays = PLAN.filter(d => d.exercises.length > 0 || d.type === 'active');
+  // 主动休息(rest模式)不计入"已完成训练"，但也不打断连击
+  const completed = trainDays.filter(d => state.dayCompleted[d.date] && state.mode[d.date] !== 'rest').length;
+  document.getElementById('stat-completed').textContent = completed;
+
+  // Streak: count consecutive completed training days up to today
+  let streak = 0;
+  let checkDate = today;
+  for (let i = PLAN.length - 1; i >= 0; i--) {
+    const day = PLAN[i];
+    if (day.date > today) continue;
+    if (state.dayCompleted[day.date]) {
+      if (day.exercises.length > 0 || day.type === 'active') {
+        if (state.mode[day.date] !== 'rest') streak++;
+        // rest模式：跳过当天，连击保留
+      }
+    } else if (day.date < today) {
+      // Only break streak if it's a training day that wasn't completed
+      if (day.exercises.length > 0 || day.type === 'active') break;
+    }
+  }
+  document.getElementById('stat-streak').textContent = streak;
+
+  // Completion rate
+  const totalTrainDays = trainDays.filter(d => d.date <= today).length;
+  const rate = totalTrainDays > 0 ? Math.round((completed / totalTrainDays) * 100) : 0;
+  document.getElementById('stat-rate').textContent = rate + '%';
+
+  // Protein today
+  const todayP = state.protein[today] || {};
+  let proteinTotal = 0;
+  PROTEIN_MEALS.forEach(m => { if (todayP[m.key]) proteinTotal += parseInt(m.amount); });
+  document.getElementById('stat-protein').textContent = `${proteinTotal}/90`;
+}
+
+// ===== CALENDAR =====
+function renderCalendar() {
+  const today = todayStr();
+  const grid = document.getElementById('calendar-grid');
+  let html = '';
+  PLAN.forEach(day => {
+    const completed = state.dayCompleted[day.date];
+    const isTodayFlag = isToday(day.date);
+    const future = isFuture(day.date);
+    const dateObj = new Date(day.date);
+    const dow = dateObj.getDay();
+    const isWeekend = dow === 0 || dow === 6;
+    const mode = state.mode[day.date];
+    let classes = `cal-day ${day.type}`;
+    if (completed) classes += ' completed';
+    if (isTodayFlag) classes += ' today';
+    if (future) classes += ' future';
+    if (isWeekend) classes += ' weekend';
+    if (mode === 'rest') classes += ' off-rest';
+
+    const dateLabel = `${dateObj.getMonth()+1}/${dateObj.getDate()}`;
+    let typeLabel = '';
+    switch(day.type) {
+      case 'train': typeLabel = day.title.includes('首练') ? '首练' : '训练'; break;
+      case 'rest': typeLabel = '休息'; break;
+      case 'active': typeLabel = '恢复'; break;
+      case 'light': typeLabel = '轻量'; break;
+      case 'split': typeLabel = day.title.includes('上肢') ? '上肢' : '下肢'; break;
+    }
+    if (mode === 'mini') typeLabel = '迷你✓';
+    else if (mode === 'rest') typeLabel = '休';
+
+    const wdLabel = isWeekend ? (dow === 6 ? '六' : '日') : '';
+    html += `<div class="${classes}" onclick="renderToday('${day.date}'); window.scrollTo({top:0,behavior:'smooth'});">
+      <div class="cal-date">${dateLabel}</div>
+      <div class="cal-label">${typeLabel}</div>
+      ${wdLabel ? `<div class="cal-wd">${wdLabel}</div>` : ''}
+    </div>`;
+  });
+  grid.innerHTML = html;
+}
+
+// ===== TIMER =====
+let timerInterval = null;
+let timerRemaining = TOTAL_DURATION;
+let timerRunning = false;
+let timerCurrentPhase = null;
+
+function updateTimerDisplay() {
+  const min = Math.floor(timerRemaining / 60);
+  const sec = timerRemaining % 60;
+  document.getElementById('timer-display').textContent =
+    `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+
+  // Update phase highlight
+  const elapsed = TOTAL_DURATION - timerRemaining;
+  let phase = null;
+  if (elapsed < PHASE_DURATIONS.warmup) phase = 'warmup';
+  else if (elapsed < PHASE_DURATIONS.warmup + PHASE_DURATIONS.main) phase = 'main';
+  else phase = 'stretch';
+
+  document.querySelectorAll('.timer-phase').forEach(el => {
+    const p = el.dataset.phase;
+    el.classList.remove('active', 'done');
+    if (p === phase) el.classList.add('active');
+    else if (elapsed >= getPhaseEnd(p)) el.classList.add('done');
+  });
+}
+
+function getPhaseEnd(phase) {
+  if (phase === 'warmup') return PHASE_DURATIONS.warmup;
+  if (phase === 'main') return PHASE_DURATIONS.warmup + PHASE_DURATIONS.main;
+  return TOTAL_DURATION;
+}
+
+function updateTimerPhases(day) {
+  // Could customize phases per day type, but keep consistent for simplicity
+}
+
+function startTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  document.getElementById('timer-start').style.display = 'none';
+  document.getElementById('timer-pause').style.display = 'inline-block';
+  timerInterval = setInterval(() => {
+    timerRemaining--;
+    if (timerRemaining <= 0) {
+      timerRemaining = 0;
+      clearInterval(timerInterval);
+      timerRunning = false;
+      document.getElementById('timer-start').style.display = 'inline-block';
+      document.getElementById('timer-start').textContent = '完成';
+      document.getElementById('timer-pause').style.display = 'none';
+      showToast('训练完成！别忘了打卡 ✓', 'celebrate');
+    }
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function pauseTimer() {
+  if (!timerRunning) return;
+  clearInterval(timerInterval);
+  timerRunning = false;
+  document.getElementById('timer-start').style.display = 'inline-block';
+  document.getElementById('timer-start').textContent = '继续';
+  document.getElementById('timer-pause').style.display = 'none';
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerRemaining = TOTAL_DURATION;
+  document.getElementById('timer-start').style.display = 'inline-block';
+  document.getElementById('timer-start').textContent = '开始';
+  document.getElementById('timer-pause').style.display = 'none';
+  updateTimerDisplay();
+}
+
+// ===== TOAST =====
+function showToast(msg, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => {
+    toast.className = 'toast';
+  }, 3000);
+}
+
+// ===== RESET ALL =====
+function resetAll() {
+  if (confirm('确定要重置所有打卡数据吗？这将清除所有记录，无法恢复。')) {
+    state = {
+      exercises: {},
+      dayCompleted: {},
+      protein: {},
+      notes: {},
+      mode: {},
+    };
+    saveState();
+    renderToday(todayStr());
+    updateStats();
+    renderCalendar();
+    showToast('已重置', 'success');
+  }
+}
+
+// ===== INIT =====
+updateTimerDisplay();
+renderToday(todayStr());
+updateStats();
+renderCalendar();
+
+// Auto-update "today" if left open past midnight
+setInterval(() => {
+  const newToday = todayStr();
+  if (currentViewDate === todayStr() && newToday !== currentViewDate) {
+    renderToday(newToday);
+    updateStats();
+    renderCalendar();
+  }
+}, 60000);
+</script>
+</body>
+</html>
