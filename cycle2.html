@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>训练打卡工作台 · 周期2 弹力带+泡沫轴 · 9/5 - 10/2</title>
+<title>训练打卡工作台 · 9/29 - 10/26</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -136,6 +136,8 @@
   .today-type.active { background: var(--orange-light); color: #e65100; }
   .today-type.light { background: var(--blue-light); color: #1565c0; }
   .today-type.split { background: var(--red-light); color: #c62828; }
+  .today-type.cardio { background: #f3e5f5; color: #7b1fa2; }
+  .cal-day.cardio { background: #f3e5f5; border-color: #9c27b0; }
 
   /* ===== EXERCISE LIST ===== */
   .exercise-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
@@ -624,12 +626,12 @@
   <!-- HEADER -->
   <div class="header">
     <h1>训练打卡工作台</h1>
-    <div class="sub">9月5日 - 10月2日 · 28天周期 · 弹力带+泡沫轴版 · 每天40分钟 · 蛋白质90g</div>
+    <div class="sub">9月29日 - 10月26日 · 28天周期 · 弹力带版 · 每天40分钟 · 蛋白质90g · 周末有氧</div>
   </div>
 
   <!-- BACKUP BAR -->
   <div class="backup-bar">
-    <span>💾 数据备份：换电脑/浏览器前先「导出」，新环境打开后点「导入」即可恢复全部打卡记录（两个周期一起备份）。</span>
+    <span>💾 数据备份：换电脑/浏览器前先「导出」，新环境打开后点「导入」即可恢复全部打卡记录（全部周期一起备份）。</span>
     <span class="btns">
       <button onclick="exportData()">⬇ 导出备份</button>
       <label class="import-btn">⬆ 导入备份<input type="file" accept=".json,.txt" style="display:none" onchange="importData(event)"></label>
@@ -637,40 +639,23 @@
   </div>
 
   <!-- CYCLE SWITCHER -->
-  <div style="display:flex; gap:8px; margin-bottom:16px;">
-    <a href="./index.html" style="flex:1; text-align:center; padding:12px 8px; border-radius:12px; background:#fff; border:1px solid #e5e5e5; color:#333; font-size:13px; font-weight:600; text-decoration:none; display:block;">
-      周期1 · 徒手版<span style="display:block; font-size:11px; font-weight:400; color:#888; margin-top:2px;">8/15-9/4 · 上一周期</span>
-    </a>
-    <div style="flex:1; text-align:center; padding:12px 8px; border-radius:12px; background:#993556; color:#fff; font-size:13px; font-weight:600; box-shadow:0 2px 8px rgba(153,53,86,.25);">
-      周期2 · 弹力带泡沫轴<span style="display:block; font-size:11px; font-weight:400; opacity:.85; margin-top:2px;">9/5-10/2 · 现在进行中</span>
-    </div>
-  </div>
+  <div style="display:flex; gap:6px; margin-bottom:16px;"><a style="flex:1; text-align:center; padding:10px 6px; border-radius:12px; background:#fff; border:1px solid #e5e5e5; color:#333; font-size:12px; font-weight:600; text-decoration:none; display:block;" href="index.html">周期1 · 徒手版<span style="display:block; font-size:10px; font-weight:400; color:#888; margin-top:2px;">9/1-9/28 · 已完成</span></a>
+    <div style="flex:1; text-align:center; padding:10px 6px; border-radius:12px; background:#993556; color:#fff; font-size:12px; font-weight:600; box-shadow:0 2px 8px rgba(153,53,86,.25);">周期2 · 弹力带版<span style="display:block; font-size:10px; font-weight:400; opacity:.85; margin-top:2px;">9/29-10/26 · 进行中</span></div>
+    <a style="flex:1; text-align:center; padding:10px 6px; border-radius:12px; background:#fff; border:1px solid #e5e5e5; color:#333; font-size:12px; font-weight:600; text-decoration:none; display:block;" href="cycle3.html">周期3 · 弹力带+泡沫轴<span style="display:block; font-size:10px; font-weight:400; color:#888; margin-top:2px;">10/27-11/23 · 下一周期</span></a>
+    <a style="flex:1; text-align:center; padding:10px 6px; border-radius:12px; background:#fff; border:1px solid #e5e5e5; color:#333; font-size:12px; font-weight:600; text-decoration:none; display:block;" href="cycle4.html">周期4 · 全器械版<span style="display:block; font-size:10px; font-weight:400; color:#888; margin-top:2px;">11/24-12/21 · 下一周期</span></a></div>
 
   <!-- STATS -->
   <div class="note-banner" style="background:#fff8e1; border:1px solid #f0d48a; border-radius:12px; padding:10px 16px; margin-bottom:16px; font-size:13px; color:#7a5b12;">
-    💪 <b>本周期 · 弹力带+泡沫轴版：</b>建议入手中等阻力弹力带（15-25磅）+ 泡沫轴（平滑款）。动作旁的 ▶ 视频可跟练，弹力带划船/面拉跟练欧阳春晓弹力带练背。
+    🧰 <b>当前弹力带版：</b>瑜伽垫 + 弹力带 + 矿泉水瓶。弹力带建议买门扣款，训练面拉/划船更方便。
   </div>
 
   <!-- GOALS -->
-  <div class="goals-card">    <div class="goals-title">🎯 计划目标 · 周期2</div>
+  <div class="goals-card">
+    <div class="goals-title">🎯 计划目标</div>
     <div class="goals-grid">
       <div class="goal-item">
-        <div class="goal-num">129斤 → 120-122斤</div>
-        <div class="goal-label">减脂目标不变 · 温和缺口</div>
-      </div>
-      <div class="goal-item">
-        <div class="goal-num">阻力进阶</div>
-        <div class="goal-label">徒手 → 弹力带加阻</div>
-      </div>
-      <div class="goal-item">
-        <div class="goal-num">恢复升级</div>
-        <div class="goal-label">泡沫轴放松训练后肌肉</div>
-      </div>
-      <div class="goal-item">
-        <div class="goal-num">坚持打卡</div>
-        <div class="goal-label">28天完成率 ≥ 80%</div>
-      </div>
-    </div></div>
+        <div class="goal-num">129斤 → 118-120斤</div>
+        <div class="goal-label">4个月温和减脂 · 每周-0.3kg</div>
       </div>
       <div class="goal-item">
         <div class="goal-num">肌肉抗老</div>
@@ -682,7 +667,7 @@
       </div>
       <div class="goal-item">
         <div class="goal-num">坚持打卡</div>
-        <div class="goal-label">21天周期完成率 ≥ 80%</div>
+        <div class="goal-label">28天周期完成率 ≥ 80%</div>
       </div>
     </div>
   </div>
@@ -747,7 +732,7 @@
 
   <!-- WEEKEND FLEX RULES -->
   <div class="flex-rules">
-    <div class="flex-rules-title">🏖️ 周末 / 节假日 · 三种模式任选</div>
+    <div class="flex-rules-title">🏃 周末 = 有氧日（快走/慢跑40min）· 节假日三种模式任选</div>
     <div class="flex-rules-grid">
       <div class="flex-rule"><b>🏠 在家有空</b>训练挪到白天（10:00 / 15:00 都行），晚上不用练，或照常 21:30</div>
       <div class="flex-rule"><b>🎉 出门 / 聚会</b>用 15分钟迷你版：臀桥3×15 + 死虫式3×10 + 靠墙滑墙3×10</div>
@@ -805,6 +790,7 @@
       <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#e8a93c;"></span>主动恢复</span>
       <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#6b8fd5;"></span>轻量</span>
       <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#c44444;"></span>分化</span>
+      <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#9c27b0;"></span>有氧</span>
       <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#ccc;"></span>休息</span>
       <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#993556;"></span>今天</span>
       <span class="cal-legend-item">✓ 已完成</span>
@@ -828,86 +814,68 @@
 <script>
 // ===== DATA =====
 const PLAN = [
-  { date:"2026-09-05", cycleDay:1, type:"rest", phase:"经期", title:"经期休息", exercises:[] },
-  { date:"2026-09-06", cycleDay:2, type:"rest", phase:"经期", title:"经期休息", exercises:[] },
-  { date:"2026-09-07", cycleDay:3, type:"active", phase:"经期", title:"八段锦+拉伸", exercises:[
-    {name:"八段锦", detail:"12分钟 · 国家体育总局版"},{name:"拉伸/散步20min", detail:"轻松舒缓"}]},
-  { date:"2026-09-08", cycleDay:4, type:"active", phase:"经期", title:"散步+泡沫轴轻压", exercises:[
-    {name:"散步20min", detail:"轻松步伐"},{name:"散步+泡沫轴轻压", detail:"泡沫轴轻压大腿/小腿 · 力度轻柔"}]},
-  { date:"2026-09-09", cycleDay:5, type:"light", phase:"经期", title:"轻量激活", exercises:[
-    {name:"弹力带划船", detail:"3组×10次 · 轻阻力"},{name:"臀桥", detail:"3组×12次 · 徒手"}]},
-  { date:"2026-09-10", cycleDay:6, type:"active", phase:"经期", title:"拉伸+泡沫轴", exercises:[
-    {name:"拉伸/散步20min", detail:"舒缓"},{name:"拉伸+泡沫轴腿部放松", detail:"滚大腿前/后侧 各30秒×2"}]},
-  { date:"2026-09-11", cycleDay:7, type:"train", phase:"卵泡期", title:"训练A · 弹力带", exercises:[
-    {name:"弹力带划船", detail:"3组×12次 · 脚踩带坐姿拉夹肩胛"},{name:"弹力带面拉", detail:"3组×12次 · 拉向面部肘抬高"},
-    {name:"靠墙滑墙", detail:"3组×12次"},{name:"死虫式", detail:"3组×10次/侧"},
-    {name:"平板支撑", detail:"3组×30秒"}]},
-  { date:"2026-09-12", cycleDay:8, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
-  { date:"2026-09-13", cycleDay:9, type:"train", phase:"卵泡期", title:"训练B · 弹力带", exercises:[
-    {name:"弹力带深蹲", detail:"3组×12次 · 带子套膝上或踩脚下"},{name:"弹力带臀桥", detail:"3组×15次 · 带子压髋部" },
-    {name:"跪姿俯卧撑", detail:"3组×10次"},{name:"弹力带侧平举", detail:"3组×10次"},
-    {name:"鸟狗式", detail:"3组×10次/侧"}]},
-  { date:"2026-09-14", cycleDay:10, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
-  { date:"2026-09-15", cycleDay:11, type:"train", phase:"卵泡期", title:"训练A+ 进阶", exercises:[
-    {name:"弹力带划船", detail:"3组×15次 · 加量"},{name:"弹力带面拉", detail:"3组×15次 · 加量"},
-    {name:"死虫式", detail:"3组×12次/侧"},{name:"平板支撑", detail:"3组×40秒"}]},
-  { date:"2026-09-16", cycleDay:12, type:"rest", phase:"卵泡期", title:"休息", exercises:[] },
-  { date:"2026-09-17", cycleDay:13, type:"train", phase:"卵泡期", title:"训练B+ 进阶", exercises:[
-    {name:"弹力带深蹲", detail:"3组×15次 · 加量"},{name:"弹力带臀桥", detail:"3组×15次"},
-    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
-  { date:"2026-09-18", cycleDay:14, type:"active", phase:"卵泡期", title:"主动恢复 · 泡沫轴", exercises:[
-    {name:"泡沫轴全身放松", detail:"滚背/臀/大腿 各30秒×2 · 最全泡沫轴跟练"}]},
-  { date:"2026-09-19", cycleDay:15, type:"split", phase:"排卵期", title:"上肢拉+核心", exercises:[
-    {name:"弹力带划船", detail:"3组×15次"},{name:"弹力带面拉", detail:"3组×12次 · 肘抬高"},
-    {name:"平板支撑", detail:"3组×40秒"},{name:"死虫式", detail:"3组×12次/侧"}]},
-  { date:"2026-09-20", cycleDay:16, type:"rest", phase:"排卵期", title:"休息", exercises:[] },
-  { date:"2026-09-21", cycleDay:17, type:"split", phase:"排卵期", title:"下肢+上肢推", exercises:[
-    {name:"弹力带深蹲", detail:"3组×15次 · 膝盖不内扣"},{name:"弹力带臀桥", detail:"3组×15次"},
-    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
-  { date:"2026-09-22", cycleDay:18, type:"rest", phase:"排卵期", title:"休息", exercises:[] },
-  { date:"2026-09-23", cycleDay:19, type:"split", phase:"排卵期", title:"上肢拉+核心", exercises:[
-    {name:"弹力带划船", detail:"3组×15次 · 同D15"},{name:"弹力带面拉", detail:"3组×12次"},
-    {name:"平板支撑", detail:"3组×40秒"},{name:"死虫式", detail:"3组×12次/侧"}]},
-  { date:"2026-09-24", cycleDay:20, type:"split", phase:"排卵期", title:"下肢+上肢推", exercises:[
-    {name:"弹力带深蹲", detail:"3组×15次 · 同D17"},{name:"弹力带臀桥", detail:"3组×15次"},
-    {name:"跪姿俯卧撑", detail:"3组×12次"},{name:"弹力带侧平举", detail:"3组×12次"}]},
-  { date:"2026-09-25", cycleDay:21, type:"active", phase:"排卵期", title:"主动恢复 · 泡沫轴", exercises:[
-    {name:"泡沫轴全身+拉伸", detail:"全身放松 + 拉伸"}]},
-  { date:"2026-09-26", cycleDay:22, type:"light", phase:"黄体期", title:"轻量上肢", exercises:[
-    {name:"弹力带划船", detail:"3组×12次 · 轻量"},{name:"靠墙滑墙", detail:"3组×12次 · 轻量"}]},
-  { date:"2026-09-27", cycleDay:23, type:"rest", phase:"黄体期", title:"休息", exercises:[] },
-  { date:"2026-09-28", cycleDay:24, type:"light", phase:"黄体期", title:"轻量下肢", exercises:[
-    {name:"弹力带臀桥", detail:"3组×12次"},{name:"扶椅深蹲", detail:"3组×10次"}]},
-  { date:"2026-09-29", cycleDay:25, type:"rest", phase:"黄体期", title:"休息", exercises:[] },
-  { date:"2026-09-30", cycleDay:26, type:"light", phase:"黄体期", title:"轻量全身", exercises:[
-    {name:"弹力带划船", detail:"3组×10次"},{name:"臀桥", detail:"3组×12次"},{name:"死虫式", detail:"3组×8次/侧"}]},
-  { date:"2026-10-01", cycleDay:27, type:"active", phase:"黄体期", title:"八段锦+拉伸", exercises:[
-    {name:"八段锦+拉伸20min", detail:"为经期做准备"}]},
-  { date:"2026-10-02", cycleDay:28, type:"rest", phase:"黄体期", title:"充分休息", exercises:[] },
+  { date:"2026-09-29", cycleDay:25, type:"light", phase:"黄体后期", title:"轻量上肢 · 首练", exercises:[{name:"弹力带划船",detail:"3组x12次 · 轻量"},{name:"靠墙滑墙",detail:"3组x12次 · 轻量"}] },
+  { date:"2026-09-30", cycleDay:26, type:"light", phase:"黄体后期", title:"轻量下肢", exercises:[{name:"臀桥",detail:"3组x15次"},{name:"弹力带深蹲",detail:"3组x10次"}] },
+  { date:"2026-10-01", cycleDay:27, type:"active", phase:"黄体后期", title:"国庆 · 主动恢复", exercises:[{name:"八段锦+拉伸 20min",detail:"舒缓活血 · 为经期做准备"}] },
+  { date:"2026-10-02", cycleDay:28, type:"rest", phase:"黄体后期", title:"国庆 · 经前休息", exercises:[] },
+  { date:"2026-10-03", cycleDay:1, type:"rest", phase:"经期", title:"国庆 · 经期第1天", exercises:[] },
+  { date:"2026-10-04", cycleDay:2, type:"rest", phase:"经期", title:"国庆 · 经期第2天", exercises:[] },
+  { date:"2026-10-05", cycleDay:3, type:"active", phase:"经期恢复", title:"国庆 · 八段锦+散步", exercises:[{name:"八段锦+拉伸 20min",detail:"舒缓活血 · 为经期做准备"}] },
+  { date:"2026-10-06", cycleDay:4, type:"light", phase:"经期恢复", title:"国庆 · 轻量训练", exercises:[{name:"弹力带划船",detail:"3组x10次"},{name:"臀桥",detail:"3组x12次"},{name:"死虫式",detail:"3组x8次/侧"}] },
+  { date:"2026-10-07", cycleDay:5, type:"train", phase:"经期恢复", title:"国庆 · 训练A · 恢复", exercises:[{name:"弹力带划船",detail:"3组x12次 · 坐地脚踩弹力带"},{name:"弹力带面拉",detail:"3组x12次 · 弹力带拉近面部"},{name:"Y-T-W举臂",detail:"3组x10次"},{name:"死虫式",detail:"3组x10次/侧"},{name:"臀桥",detail:"3组x15次"}] },
+  { date:"2026-10-08", cycleDay:6, type:"train", phase:"经期恢复", title:"训练B", exercises:[{name:"弹力带胸前推",detail:"3组x12次 · 弹力带绕背推"},{name:"跪姿俯卧撑",detail:"3组x10次"},{name:"弹力带深蹲",detail:"3组x12次 · 踩弹力带蹲"},{name:"鸟狗式",detail:"3组x10次/侧"},{name:"弹力带侧平举",detail:"3组x12次"}] },
+  { date:"2026-10-09", cycleDay:7, type:"train", phase:"卵泡期", title:"训练A", exercises:[{name:"弹力带划船",detail:"3组x12次 · 坐地脚踩弹力带"},{name:"弹力带面拉",detail:"3组x12次 · 弹力带拉近面部"},{name:"Y-T-W举臂",detail:"3组x10次"},{name:"死虫式",detail:"3组x10次/侧"},{name:"臀桥",detail:"3组x15次"}] },
+  { date:"2026-10-10", cycleDay:8, type:"cardio", phase:"卵泡期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-11", cycleDay:9, type:"cardio", phase:"卵泡期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-12", cycleDay:10, type:"train", phase:"卵泡期", title:"训练B", exercises:[{name:"弹力带胸前推",detail:"3组x12次 · 弹力带绕背推"},{name:"跪姿俯卧撑",detail:"3组x10次"},{name:"弹力带深蹲",detail:"3组x12次 · 踩弹力带蹲"},{name:"鸟狗式",detail:"3组x10次/侧"},{name:"弹力带侧平举",detail:"3组x12次"}] },
+  { date:"2026-10-13", cycleDay:11, type:"train", phase:"卵泡期", title:"训练A+ 进阶", exercises:[{name:"弹力带划船",detail:"3组x15次"},{name:"臀桥",detail:"3组x20次"},{name:"平板支撑",detail:"3组x35秒"},{name:"死虫式",detail:"3组x12次/侧"}] },
+  { date:"2026-10-14", cycleDay:12, type:"train", phase:"卵泡期", title:"训练B+ 进阶", exercises:[{name:"跪姿俯卧撑",detail:"3组x12次"},{name:"弹力带深蹲",detail:"3组x15次"},{name:"鸟狗式",detail:"3组x12次/侧"},{name:"弹力带侧平举",detail:"3组x15次"}] },
+  { date:"2026-10-15", cycleDay:13, type:"train", phase:"卵泡期", title:"分化A · 上肢拉+核心", exercises:[{name:"弹力带划船",detail:"3组x15次"},{name:"弹力带面拉",detail:"3组x15次"},{name:"平板支撑",detail:"3组x40秒"},{name:"死虫式",detail:"3组x12次/侧"}] },
+  { date:"2026-10-16", cycleDay:14, type:"train", phase:"排卵期", title:"分化B · 下肢+上肢推", exercises:[{name:"弹力带深蹲",detail:"3组x15次"},{name:"臀桥",detail:"3组x20次"},{name:"弹力带胸前推",detail:"3组x12次"},{name:"弹力带侧平举",detail:"3组x15次"}] },
+  { date:"2026-10-17", cycleDay:15, type:"cardio", phase:"排卵期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-18", cycleDay:16, type:"cardio", phase:"排卵期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-19", cycleDay:17, type:"train", phase:"黄体期", title:"分化A · 上肢拉+核心", exercises:[{name:"弹力带划船",detail:"3组x15次"},{name:"弹力带面拉",detail:"3组x15次"},{name:"平板支撑",detail:"3组x40秒"},{name:"死虫式",detail:"3组x12次/侧"}] },
+  { date:"2026-10-20", cycleDay:18, type:"train", phase:"黄体期", title:"分化B · 下肢+上肢推", exercises:[{name:"弹力带深蹲",detail:"3组x15次"},{name:"臀桥",detail:"3组x20次"},{name:"弹力带胸前推",detail:"3组x12次"},{name:"弹力带侧平举",detail:"3组x15次"}] },
+  { date:"2026-10-21", cycleDay:19, type:"train", phase:"黄体期", title:"训练A", exercises:[{name:"弹力带划船",detail:"3组x12次 · 坐地脚踩弹力带"},{name:"弹力带面拉",detail:"3组x12次 · 弹力带拉近面部"},{name:"Y-T-W举臂",detail:"3组x10次"},{name:"死虫式",detail:"3组x10次/侧"},{name:"臀桥",detail:"3组x15次"}] },
+  { date:"2026-10-22", cycleDay:20, type:"light", phase:"黄体期", title:"轻量全身", exercises:[{name:"弹力带划船",detail:"3组x10次"},{name:"臀桥",detail:"3组x12次"},{name:"死虫式",detail:"3组x8次/侧"}] },
+  { date:"2026-10-23", cycleDay:21, type:"light", phase:"黄体期", title:"轻量全身", exercises:[{name:"弹力带划船",detail:"3组x10次"},{name:"臀桥",detail:"3组x12次"},{name:"死虫式",detail:"3组x8次/侧"}] },
+  { date:"2026-10-24", cycleDay:22, type:"cardio", phase:"黄体期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-25", cycleDay:23, type:"cardio", phase:"黄体期", title:"有氧日", exercises:[{name:"快走或慢跑 40min",detail:"心率119-137 · 可分段（如早晚各20min）· 走跑交替也行"}] },
+  { date:"2026-10-26", cycleDay:24, type:"active", phase:"黄体期", title:"主动恢复 · 收尾（周期2结束）", exercises:[{name:"八段锦+拉伸 20min",detail:"舒缓活血 · 为经期做准备"}] }
 ];
 
 // 动作 → 跟练视频（B站），渲染时自动匹配动作名
 const VIDEO_MAP = {
   "八段锦": "https://www.bilibili.com/video/BV1x7nkzeEyE",
-  "八段锦+拉伸20min": "https://www.bilibili.com/video/BV1x7nkzeEyE",
-  "弹力带划船": "https://www.bilibili.com/video/BV1fa4y1y7Vg",
-  "弹力带面拉": "https://www.bilibili.com/video/BV1fa4y1y7Vg",
+  "八段锦+拉伸 20min": "https://www.bilibili.com/video/BV1x7nkzeEyE",
   "靠墙滑墙": "https://www.bilibili.com/video/BV1yjuC6XEhb",
+  "俯卧超人划船": "https://www.bilibili.com/video/BV1P5PVe1E2g",
+  "Y-T-W举臂": "https://www.bilibili.com/video/BV1zq4y197rR",
   "死虫式": "https://www.bilibili.com/video/BV1Pwud6XEFX",
-  "平板支撑": "https://www.bilibili.com/video/BV1Q34y1j79r",
-  "弹力带深蹲": "https://www.bilibili.com/video/BV1Lx411o7m2",
-  "弹力带臀桥": "https://www.bilibili.com/video/BV1kF411F7YG",
-  "跪姿俯卧撑": "https://www.bilibili.com/video/BV1eJud6gEYR",
-  "弹力带侧平举": "https://www.bilibili.com/video/BV1rK4y1f75C",
-  "鸟狗式": "https://www.bilibili.com/video/BV1ne411W7MV",
-  "扶椅深蹲": "https://www.bilibili.com/video/BV1o22aBPEM9",
   "臀桥": "https://www.bilibili.com/video/BV1kF411F7YG",
-  "泡沫轴全身放松": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
-  "泡沫轴全身+拉伸": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
-  "拉伸+泡沫轴腿部放松": "https://www.bilibili.com/video/BV1Z7411D7Ny",
-  "散步+泡沫轴轻压": "https://www.bilibili.com/video/BV1Gf4y1d7JH",
-  "拉伸/散步20min": "https://b23.tv/BV1r7411H7jL",
-  "散步20min": "https://b23.tv/BV1r7411H7jL",
+  "跪姿俯卧撑": "https://www.bilibili.com/video/BV1eJud6gEYR",
+  "扶椅深蹲": "https://www.bilibili.com/video/BV1o22aBPEM9",
+  "鸟狗式": "https://www.bilibili.com/video/BV1ne411W7MV",
+  "平板支撑": "https://www.bilibili.com/video/BV1Q34y1j79r",
+  "俯卧W外旋": "https://www.bilibili.com/video/BV1Xf4y1373j",
+  "徒手深蹲": "https://www.bilibili.com/video/BV1Lx411o7m2",
+  "墙壁俯卧撑": "https://www.bilibili.com/video/BV1AEqRBJENh",
+  "水瓶侧平举": "https://www.bilibili.com/video/BV1rK4y1f75C",
+  "弹力带划船": "https://search.bilibili.com/all?keyword=弹力带划船教程",
+  "弹力带面拉": "https://search.bilibili.com/all?keyword=弹力带面拉教程",
+  "弹力带胸前推": "https://search.bilibili.com/all?keyword=弹力带胸前推教程",
+  "弹力带深蹲": "https://search.bilibili.com/all?keyword=弹力带深蹲教程",
+  "弹力带侧平举": "https://search.bilibili.com/all?keyword=弹力带侧平举教程",
+  "泡沫轴胸椎伸展": "https://search.bilibili.com/all?keyword=泡沫轴胸椎伸展",
+  "泡沫轴背阔肌放松": "https://search.bilibili.com/all?keyword=泡沫轴背阔肌放松",
+  "泡沫轴臀腿放松": "https://search.bilibili.com/all?keyword=泡沫轴臀腿放松",
+  "哑铃划船": "https://search.bilibili.com/all?keyword=哑铃划船教程",
+  "哑铃面拉": "https://search.bilibili.com/all?keyword=哑铃面拉教程",
+  "哑铃臀桥": "https://search.bilibili.com/all?keyword=哑铃臀桥教程",
+  "哑铃地板卧推": "https://search.bilibili.com/all?keyword=哑铃地板卧推教程",
+  "哑铃高脚杯深蹲": "https://search.bilibili.com/all?keyword=哑铃高脚杯深蹲教程",
+  "哑铃侧平举": "https://search.bilibili.com/all?keyword=哑铃侧平举教程",
+  "快走或慢跑 40min": "https://search.bilibili.com/all?keyword=女生慢跑入门40分钟"
 };
 
 const PROTEIN_MEALS = [
@@ -1333,6 +1301,7 @@ function renderCalendar() {
       case 'active': typeLabel = '恢复'; break;
       case 'light': typeLabel = '轻量'; break;
       case 'split': typeLabel = day.title.includes('上肢') ? '上肢' : '下肢'; break;
+      case 'cardio': typeLabel = '有氧'; break;
     }
     if (mode === 'mini') typeLabel = '迷你✓';
     else if (mode === 'rest') typeLabel = '休';
