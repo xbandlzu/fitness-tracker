@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>女生版 · 减脂 1300 kcal</title>
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --line:#e5e7eb; --ink:#1f2329; --sub:#6b7280;
+  --accent:#d4457a; --accent-soft:#fdeef4;
+  --ok:#15803d; --ok-bg:#dcfce7; --warn:#b45309; --warn-bg:#fef3c7; --bad:#b91c1c; --bad-bg:#fee2e2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55;padding-bottom:90px}
+.wrap{max-width:1060px;margin:0 auto;padding:18px 16px}
+/* header */
+.head{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.head h1{font-size:26px;letter-spacing:.5px}
+.head p{opacity:.95;margin-top:6px;font-size:14px}
+.head .nav{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.head .nav a{color:#fff;text-decoration:none;font-size:13px;border:1px solid rgba(255,255,255,.7);padding:4px 12px;border-radius:999px}
+.head .nav a.cur{background:#fff;color:var(--accent);border-color:#fff;font-weight:600}
+.goals{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.goal{background:rgba(255,255,255,.16);border-radius:10px;padding:6px 12px;font-size:13px}
+/* summary sticky */
+.summary{position:sticky;top:8px;z-index:20;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.summary .row{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline}
+.metric{display:flex;flex-direction:column;line-height:1.2}
+.metric b{font-size:22px}
+.metric small{color:var(--sub);font-size:11px}
+.metric .k{color:var(--accent)} .metric .p{color:#0e7490} .metric .g{color:#7c3aed}
+.verdict{margin-left:auto;font-size:14px;font-weight:600;text-align:right;max-width:360px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600}
+.badge.ok{background:var(--ok-bg);color:var(--ok)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.badge.bad{background:var(--bad-bg);color:var(--bad)}
+/* meal cards */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.card.slot-B{border-top:4px solid #f59e0b}
+.card.slot-L{border-top:4px solid #16a34a}
+.card.slot-D{border-top:4px solid #0ea5e9}
+.card.slot-N{border-top:4px solid #f97316}
+.card h2{font-size:16px;display:flex;align-items:center;gap:6px}
+.card h2 .tag{font-size:11px;color:var(--sub);font-weight:400}
+.hint{font-size:12px;color:var(--sub);margin:4px 0 8px}
+.card select{width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font-size:14px;color:var(--ink)}
+.optinfo{margin-top:10px;font-size:13px;color:var(--sub)}
+table.items{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+table.items th,table.items td{border-bottom:1px solid #f0f1f3;padding:5px 4px;text-align:left}
+table.items th{color:var(--sub);font-weight:500;white-space:nowrap}
+table.items td.num,table.items th.num{text-align:right;font-variant-numeric:tabular-nums}
+table.items tr:last-child td{border-bottom:none}
+.mealtotal{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.chip{font-size:12px;padding:3px 10px;border-radius:999px;background:#f1f5f9;color:#334155}
+.chip b{font-size:13px}
+/* greens */
+.greens{margin-top:16px}
+.greens summary{cursor:pointer;font-size:15px;font-weight:700;color:var(--accent)}
+.greens table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;background:#fff}
+.greens th,.greens td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+.greens th{background:#f8fafc}
+.foot{margin-top:18px;font-size:12px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head" style="--accent2:#8b3fae">
+    <h1>女生版 · 减脂 1300 kcal</h1>
+    <p>基础代谢按 1200 kcal · 目标 1200–1300 kcal/天 · 蛋白 ≥ 85g</p>
+    <div class="nav">
+      <a href="index.html">🏠 首页</a>
+      <a href="female-1300.html" class="cur">👩 女生版 1300</a>
+      <a href="male-2000.html" class="">👨 男生版 2000</a>
+    </div>
+    <div class="goals">
+      <span class="goal">🎯 每日热量：1200–1300 kcal</span>
+      <span class="goal">💪 每日蛋白：≥ 85 g</span>
+      <span class="goal">🧈 脂肪随餐自动计入</span>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="row">
+      <div class="metric"><b class="k"><span id="sumK">0</span></b><small>总热量 kcal</small></div>
+      <div class="metric"><b class="p"><span id="sumP">0</span></b><small>蛋白 g</small></div>
+      <div class="metric"><b class="g"><span id="sumG">0</span></b><small>脂肪 g</small></div>
+    </div>
+    <div class="verdict"><span id="verdict" class="badge">…</span>
+      <div id="verdictSub" style="font-size:12px;color:var(--sub);margin-top:4px"></div>
+    </div>
+  </div>
+
+  <div class="grid" id="mealGrid"></div>
+
+  <details class="greens" open>
+    <summary>🥬 绿叶菜替换建议（每天换着吃：芹菜 / 韭菜 / 小白菜 / 生菜 …）</summary>
+    <table>
+      <tr><th style="width:90px">绿叶菜</th><th style="width:70px">kcal/100g</th><th style="width:70px">蛋白/g</th><th>怎么吃</th></tr>
+      <tbody id="greenRows"></tbody>
+    </table>
+  </details>
+
+  <p class="foot">口径说明：肉/蔬菜=生重，米面薯=熟重，燕麦/坚果=干重；鸡蛋按 1 个≈50g。营养值为常见食材估算（±2g），替换时以本表数值为准即可。🍳 前缀 = 该方案已含烹饪油。</p>
+</div>
+
+<script>
+const DATA = {"slots": {"female_B": [{"name": "蛋奶即食燕麦", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "即食燕麦(干)", "q": "35g", "k": 133.0, "p": 4.4, "g": 2.4}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 468.0, "p": 26.4, "g": 23.2, "id": "B01"}, {"name": "蛋奶全麦吐司", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "全麦吐司", "q": "50g", "k": 125.0, "p": 6.2, "g": 2.5}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 460.0, "p": 28.2, "g": 23.3, "id": "B02"}, {"name": "蛋奶蒸玉米", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸玉米(熟·可食)", "q": "180g", "k": 154.8, "p": 5.8, "g": 2.2}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 489.8, "p": 27.8, "g": 23.0, "id": "B03"}, {"name": "蛋奶蒸紫薯", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸紫薯(熟)", "q": "160g", "k": 112.0, "p": 1.9, "g": 0.3}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 447.0, "p": 23.9, "g": 21.1, "id": "B04"}, {"name": "蛋奶蒸红薯", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸红薯(熟)", "q": "150g", "k": 114.0, "p": 1.8, "g": 0.3}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 449.0, "p": 23.8, "g": 21.1, "id": "B05"}, {"name": "蛋奶杂粮粥", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "杂粮粥(稠·熟)", "q": "220g", "k": 110.0, "p": 3.3, "g": 1.1}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 445.0, "p": 25.3, "g": 21.9, "id": "B06"}, {"name": "蛋奶燕麦南瓜粥", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "燕麦南瓜粥(熟)", "q": "240g", "k": 120.0, "p": 3.6, "g": 1.2}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 455.0, "p": 25.6, "g": 22.0, "id": "B07"}, {"name": "蛋奶小米粥", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "小米粥(稠·熟)", "q": "250g", "k": 115.0, "p": 3.5, "g": 0.8}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 450.0, "p": 25.5, "g": 21.6, "id": "B08"}, {"name": "蛋奶黑米粥", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "黑米粥(稠·熟)", "q": "250g", "k": 150.0, "p": 3.8, "g": 0.8}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 485.0, "p": 25.8, "g": 21.6, "id": "B09"}, {"name": "蛋奶蒸山药", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸山药(熟)", "q": "200g", "k": 112.0, "p": 3.8, "g": 0.4}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 447.0, "p": 25.8, "g": 21.2, "id": "B10"}, {"name": "蛋奶全麦馒头", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "全麦馒头(熟)", "q": "70g", "k": 156.1, "p": 4.9, "g": 0.7}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 491.1, "p": 26.9, "g": 21.5, "id": "B11"}, {"name": "蛋奶蒸芋头", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸芋头(熟)", "q": "150g", "k": 118.5, "p": 3.3, "g": 0.3}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 453.5, "p": 25.3, "g": 21.1, "id": "B12"}, {"name": "蛋奶藜麦粥", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "藜麦粥(稠·熟)", "q": "240g", "k": 132.0, "p": 4.8, "g": 1.9}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 467.0, "p": 26.8, "g": 22.7, "id": "B13"}, {"name": "蛋奶玉米糊", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "玉米糊(稠·熟)", "q": "220g", "k": 88.0, "p": 2.6, "g": 0.4}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 423.0, "p": 24.6, "g": 21.2, "id": "B14"}, {"name": "蛋奶贝贝南瓜", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "贝贝南瓜(蒸·熟)", "q": "300g", "k": 69.0, "p": 1.8, "g": 0.3}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 404.0, "p": 23.8, "g": 21.1, "id": "B15"}, {"name": "蛋奶蒸土豆", "items": [{"f": "鸡蛋羹（蒸蛋）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "蒸土豆(熟)", "q": "180g", "k": 138.6, "p": 3.6, "g": 0.2}], "note": "2 蛋 + 300ml 全脂奶基底，主食轮换", "k": 473.6, "p": 25.6, "g": 21.0, "id": "B16"}, {"name": "双煎蛋吐司（含油5g）", "items": [{"f": "煎蛋（少油）", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "全麦吐司", "q": "50g", "k": 125.0, "p": 6.2, "g": 2.5}], "note": "把蒸蛋换成煎蛋，口感更香，油已计入", "k": 505.0, "p": 28.2, "g": 28.3, "id": "B17"}, {"name": "三蛋·贝贝南瓜（高蛋白）", "items": [{"f": "鸡蛋羹", "q": "3个", "k": 210.0, "p": 19.5, "g": 15.0}, {"f": "全脂牛奶", "q": "250ml", "k": 162.5, "p": 7.5, "g": 9.0}, {"f": "贝贝南瓜(蒸·熟)", "q": "300g", "k": 69.0, "p": 1.8, "g": 0.3}], "note": "三蛋补蛋白，南瓜低卡顶饱", "k": 441.5, "p": 28.8, "g": 24.3, "id": "B18"}, {"name": "香蕉燕麦奶昔碗", "items": [{"f": "鸡蛋羹", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "全脂牛奶", "q": "300ml", "k": 195.0, "p": 9.0, "g": 10.8}, {"f": "即食燕麦(干)", "q": "30g", "k": 114.0, "p": 3.8, "g": 2.1}, {"f": "香蕉", "q": "100g", "k": 88.0, "p": 1.3, "g": 0.3}], "note": "加量款，训练日选它", "k": 537.0, "p": 27.1, "g": 23.2, "id": "B19"}, {"name": "希腊酸奶燕麦杯（免开火）", "items": [{"f": "煮鸡蛋", "q": "1个", "k": 70.0, "p": 6.5, "g": 5.0}, {"f": "无糖希腊酸奶", "q": "150g", "k": 142.5, "p": 15.0, "g": 4.5}, {"f": "即食燕麦(干)", "q": "40g", "k": 152.0, "p": 5.0, "g": 2.8}, {"f": "核桃仁(干)", "q": "5g", "k": 32.5, "p": 0.8, "g": 3.2}], "note": "前一晚泡好，早上直接吃", "k": 397.0, "p": 27.3, "g": 15.5, "id": "B20"}], "female_L": [{"name": "去皮鸡腿肉·米饭配荷兰豆", "items": [{"f": "去皮鸡腿肉(生)", "q": "150g", "k": 180.0, "p": 30.0, "g": 9.0}, {"f": "米饭(熟)", "q": "150g", "k": 195.0, "p": 3.9, "g": 0.4}, {"f": "荷兰豆(生)", "q": "100g", "k": 32.0, "p": 1.4, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "去皮鸡腿肉150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 434.0, "p": 35.3, "g": 12.6, "id": "L01"}, {"name": "鸡胸肉·燕麦米饭配芥蓝", "items": [{"f": "鸡胸肉(生)", "q": "150g", "k": 165.0, "p": 34.5, "g": 2.2}, {"f": "燕麦米饭(熟)", "q": "150g", "k": 168.0, "p": 3.6, "g": 1.5}, {"f": "芥蓝(生·白灼)", "q": "100g", "k": 22.0, "p": 2.8, "g": 0.3}], "note": "鸡胸肉150g + 白灼/焯水（无油）；菜 100g 生重", "k": 355.0, "p": 40.9, "g": 4.0, "id": "L02"}, {"name": "瘦牛里脊·蒸玉米配番茄", "items": [{"f": "瘦牛里脊(生)", "q": "130g", "k": 136.5, "p": 33.8, "g": 3.9}, {"f": "蒸玉米(熟·可食)", "q": "150g", "k": 129.0, "p": 4.8, "g": 1.8}, {"f": "番茄(生)", "q": "100g", "k": 18.0, "p": 1.0, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "瘦牛里脊130g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 310.5, "p": 39.6, "g": 8.9, "id": "L03"}, {"name": "草鱼肉·糙米饭配西兰花", "items": [{"f": "草鱼肉(生·可食)", "q": "170g", "k": 170.0, "p": 30.6, "g": 5.1}, {"f": "糙米饭(熟)", "q": "150g", "k": 174.0, "p": 4.1, "g": 1.4}, {"f": "西兰花(生·焯水)", "q": "100g", "k": 34.0, "p": 2.8, "g": 0.4}], "note": "草鱼肉170g + 白灼/焯水（无油）；菜 100g 生重", "k": 378.0, "p": 37.5, "g": 6.9, "id": "L04"}, {"name": "虾仁·蒸红薯配芹菜", "items": [{"f": "虾仁(生·去壳)", "q": "160g", "k": 136.0, "p": 35.2, "g": 1.6}, {"f": "蒸红薯(熟)", "q": "150g", "k": 114.0, "p": 1.8, "g": 0.3}, {"f": "芹菜(生)", "q": "100g", "k": 16.0, "p": 0.8, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "虾仁160g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 293.0, "p": 37.8, "g": 5.1, "id": "L05"}, {"name": "猪里脊·米饭配荷兰豆", "items": [{"f": "猪里脊(生·纯瘦)", "q": "150g", "k": 195.0, "p": 31.5, "g": 7.5}, {"f": "米饭(熟)", "q": "150g", "k": 195.0, "p": 3.9, "g": 0.4}, {"f": "荷兰豆(生)", "q": "100g", "k": 32.0, "p": 1.4, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "猪里脊150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 449.0, "p": 36.8, "g": 11.1, "id": "L06"}, {"name": "去皮鸭腿肉·燕麦米饭配芥蓝", "items": [{"f": "去皮鸭腿肉(生)", "q": "170g", "k": 221.0, "p": 30.6, "g": 11.0}, {"f": "燕麦米饭(熟)", "q": "150g", "k": 168.0, "p": 3.6, "g": 1.5}, {"f": "芥蓝(生·白灼)", "q": "100g", "k": 22.0, "p": 2.8, "g": 0.3}], "note": "去皮鸭腿肉170g + 白灼/焯水（无油）；菜 100g 生重", "k": 411.0, "p": 37.0, "g": 12.8, "id": "L07"}, {"name": "瘦羊腿肉·蒸玉米配番茄", "items": [{"f": "瘦羊腿肉(生)", "q": "140g", "k": 210.0, "p": 26.6, "g": 8.4}, {"f": "蒸玉米(熟·可食)", "q": "150g", "k": 129.0, "p": 4.8, "g": 1.8}, {"f": "番茄(生)", "q": "100g", "k": 18.0, "p": 1.0, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "瘦羊腿肉140g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 384.0, "p": 32.4, "g": 13.4, "id": "L08"}, {"name": "去皮鸡腿肉·燕麦米饭配空心菜", "items": [{"f": "去皮鸡腿肉(生)", "q": "150g", "k": 180.0, "p": 30.0, "g": 9.0}, {"f": "燕麦米饭(熟)", "q": "150g", "k": 168.0, "p": 3.6, "g": 1.5}, {"f": "空心菜(生)", "q": "100g", "k": 24.0, "p": 1.3, "g": 0.3}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "去皮鸡腿肉150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 399.0, "p": 34.9, "g": 13.8, "id": "L09"}, {"name": "鸡胸肉·蒸玉米配苦瓜", "items": [{"f": "鸡胸肉(生)", "q": "150g", "k": 165.0, "p": 34.5, "g": 2.2}, {"f": "蒸玉米(熟·可食)", "q": "150g", "k": 129.0, "p": 4.8, "g": 1.8}, {"f": "苦瓜(生)", "q": "100g", "k": 20.0, "p": 1.0, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "鸡胸肉150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 341.0, "p": 40.3, "g": 7.2, "id": "L10"}, {"name": "瘦牛里脊·糙米饭配菠菜", "items": [{"f": "瘦牛里脊(生)", "q": "130g", "k": 136.5, "p": 33.8, "g": 3.9}, {"f": "糙米饭(熟)", "q": "150g", "k": 174.0, "p": 4.1, "g": 1.4}, {"f": "菠菜(生·焯水)", "q": "100g", "k": 24.0, "p": 2.6, "g": 0.4}], "note": "瘦牛里脊130g + 白灼/焯水（无油）；菜 100g 生重", "k": 334.5, "p": 40.5, "g": 5.7, "id": "L11"}, {"name": "草鱼肉·蒸红薯配油麦菜", "items": [{"f": "草鱼肉(生·可食)", "q": "170g", "k": 170.0, "p": 30.6, "g": 5.1}, {"f": "蒸红薯(熟)", "q": "150g", "k": 114.0, "p": 1.8, "g": 0.3}, {"f": "油麦菜(生)", "q": "100g", "k": 15.0, "p": 1.4, "g": 0.3}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "草鱼肉170g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 326.0, "p": 33.8, "g": 8.7, "id": "L12"}, {"name": "虾仁·米饭配韭菜", "items": [{"f": "虾仁(生·去壳)", "q": "160g", "k": 136.0, "p": 35.2, "g": 1.6}, {"f": "米饭(熟)", "q": "150g", "k": 195.0, "p": 3.9, "g": 0.4}, {"f": "韭菜(生)", "q": "100g", "k": 26.0, "p": 1.9, "g": 0.4}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "虾仁160g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 384.0, "p": 41.0, "g": 5.4, "id": "L13"}, {"name": "猪里脊·燕麦米饭配空心菜", "items": [{"f": "猪里脊(生·纯瘦)", "q": "150g", "k": 195.0, "p": 31.5, "g": 7.5}, {"f": "燕麦米饭(熟)", "q": "150g", "k": 168.0, "p": 3.6, "g": 1.5}, {"f": "空心菜(生)", "q": "100g", "k": 24.0, "p": 1.3, "g": 0.3}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "猪里脊150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 414.0, "p": 36.4, "g": 12.3, "id": "L14"}, {"name": "去皮鸭腿肉·蒸玉米配苦瓜", "items": [{"f": "去皮鸭腿肉(生)", "q": "170g", "k": 221.0, "p": 30.6, "g": 11.0}, {"f": "蒸玉米(熟·可食)", "q": "150g", "k": 129.0, "p": 4.8, "g": 1.8}, {"f": "苦瓜(生)", "q": "100g", "k": 20.0, "p": 1.0, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "去皮鸭腿肉170g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 397.0, "p": 36.4, "g": 16.0, "id": "L15"}, {"name": "瘦羊腿肉·糙米饭配菠菜", "items": [{"f": "瘦羊腿肉(生)", "q": "140g", "k": 210.0, "p": 26.6, "g": 8.4}, {"f": "糙米饭(熟)", "q": "150g", "k": 174.0, "p": 4.1, "g": 1.4}, {"f": "菠菜(生·焯水)", "q": "100g", "k": 24.0, "p": 2.6, "g": 0.4}], "note": "瘦羊腿肉140g + 白灼/焯水（无油）；菜 100g 生重", "k": 408.0, "p": 33.3, "g": 10.2, "id": "L16"}, {"name": "去皮鸡腿肉·蒸玉米配茼蒿", "items": [{"f": "去皮鸡腿肉(生)", "q": "150g", "k": 180.0, "p": 30.0, "g": 9.0}, {"f": "蒸玉米(熟·可食)", "q": "150g", "k": 129.0, "p": 4.8, "g": 1.8}, {"f": "茼蒿(生)", "q": "100g", "k": 24.0, "p": 1.5, "g": 0.3}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "去皮鸡腿肉150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 360.0, "p": 36.3, "g": 14.1, "id": "L17"}, {"name": "鸡胸肉·糙米饭配娃娃菜", "items": [{"f": "鸡胸肉(生)", "q": "150g", "k": 165.0, "p": 34.5, "g": 2.2}, {"f": "糙米饭(熟)", "q": "150g", "k": 174.0, "p": 4.1, "g": 1.4}, {"f": "娃娃菜(生)", "q": "100g", "k": 13.0, "p": 1.1, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "鸡胸肉150g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 379.0, "p": 39.7, "g": 6.8, "id": "L18"}, {"name": "瘦牛里脊·蒸红薯配菜心", "items": [{"f": "瘦牛里脊(生)", "q": "130g", "k": 136.5, "p": 33.8, "g": 3.9}, {"f": "蒸红薯(熟)", "q": "150g", "k": 114.0, "p": 1.8, "g": 0.3}, {"f": "菜心(生)", "q": "100g", "k": 19.0, "p": 1.7, "g": 0.3}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "瘦牛里脊130g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 296.5, "p": 37.3, "g": 7.5, "id": "L19"}, {"name": "草鱼肉·米饭配上海青", "items": [{"f": "草鱼肉(生·可食)", "q": "170g", "k": 170.0, "p": 30.6, "g": 5.1}, {"f": "米饭(熟)", "q": "150g", "k": 195.0, "p": 3.9, "g": 0.4}, {"f": "上海青(生)", "q": "100g", "k": 15.0, "p": 1.3, "g": 0.2}, {"f": "食用油", "q": "3g", "k": 27.0, "p": 0.0, "g": 3.0}], "note": "草鱼肉170g + 清炒（用油 3g 已计入）；菜 100g 生重", "k": 407.0, "p": 35.8, "g": 8.7, "id": "L20"}], "female_D": [{"name": "双蛋·热炒带油5g·油麦菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "油麦菜(生)", "q": "200g", "k": 30.0, "p": 2.8, "g": 0.6}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 251.0, "p": 16.8, "g": 15.8, "id": "D01"}, {"name": "双蛋豆腐·热炒带油5g·菠菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "菠菜(生·焯水)", "q": "200g", "k": 48.0, "p": 5.2, "g": 0.8}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}, {"f": "北豆腐(生·可煎/蒸)", "q": "100g", "k": 116.0, "p": 12.2, "g": 4.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；豆腐 100g 补植物蛋白；热炒带油5g", "k": 385.0, "p": 31.4, "g": 20.8, "id": "D02"}, {"name": "三蛋·热炒带油5g·上海青", "items": [{"f": "煮鸡蛋", "q": "3个", "k": 210.0, "p": 19.5, "g": 15.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "上海青(生)", "q": "200g", "k": 30.0, "p": 2.6, "g": 0.4}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋3个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 321.0, "p": 23.1, "g": 20.6, "id": "D03"}, {"name": "双蛋·热炒带油5g·西兰花", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "西兰花(生·焯水)", "q": "200g", "k": 68.0, "p": 5.6, "g": 0.8}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 289.0, "p": 19.6, "g": 16.0, "id": "D04"}, {"name": "双蛋·热炒带油5g·菜心", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "菜心(生)", "q": "200g", "k": 38.0, "p": 3.4, "g": 0.6}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 259.0, "p": 17.4, "g": 15.8, "id": "D05"}, {"name": "双蛋豆腐·热炒带油5g·生菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "生菜(生)", "q": "200g", "k": 26.0, "p": 2.6, "g": 0.4}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}, {"f": "北豆腐(生·可煎/蒸)", "q": "100g", "k": 116.0, "p": 12.2, "g": 4.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；豆腐 100g 补植物蛋白；热炒带油5g", "k": 363.0, "p": 28.8, "g": 20.4, "id": "D06"}, {"name": "双蛋·热炒带油5g·小白菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "小白菜(生)", "q": "200g", "k": 26.0, "p": 3.0, "g": 0.6}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 247.0, "p": 17.0, "g": 15.8, "id": "D07"}, {"name": "三蛋·热炒带油5g·韭菜", "items": [{"f": "煮鸡蛋", "q": "3个", "k": 210.0, "p": 19.5, "g": 15.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "韭菜(生)", "q": "200g", "k": 52.0, "p": 3.8, "g": 0.8}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋3个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 343.0, "p": 24.3, "g": 21.0, "id": "D08"}, {"name": "双蛋·热炒带油5g·芹菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "芹菜(生)", "q": "200g", "k": 32.0, "p": 1.6, "g": 0.4}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 253.0, "p": 15.6, "g": 15.6, "id": "D09"}, {"name": "双蛋·热炒带油5g·芥蓝", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "芥蓝(生·焯水)", "q": "200g", "k": 44.0, "p": 5.6, "g": 0.6}, {"f": "食用油", "q": "5g", "k": 45.0, "p": 0.0, "g": 5.0}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；热炒带油5g", "k": 265.0, "p": 19.6, "g": 15.8, "id": "D10"}, {"name": "双蛋·白灼无油·油麦菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "油麦菜(生)", "q": "200g", "k": 30.0, "p": 2.8, "g": 0.6}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 206.0, "p": 16.8, "g": 10.8, "id": "D11"}, {"name": "双蛋豆腐·白灼无油·菠菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "菠菜(生·焯水)", "q": "200g", "k": 48.0, "p": 5.2, "g": 0.8}, {"f": "北豆腐(生·可煎/蒸)", "q": "100g", "k": 116.0, "p": 12.2, "g": 4.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；豆腐 100g 补植物蛋白；白灼无油", "k": 340.0, "p": 31.4, "g": 15.8, "id": "D12"}, {"name": "三蛋·白灼无油·上海青", "items": [{"f": "煮鸡蛋", "q": "3个", "k": 210.0, "p": 19.5, "g": 15.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "上海青(生)", "q": "200g", "k": 30.0, "p": 2.6, "g": 0.4}], "note": "鸡蛋3个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 276.0, "p": 23.1, "g": 15.6, "id": "D13"}, {"name": "双蛋·白灼无油·西兰花", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "西兰花(生·焯水)", "q": "200g", "k": 68.0, "p": 5.6, "g": 0.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 244.0, "p": 19.6, "g": 11.0, "id": "D14"}, {"name": "双蛋·白灼无油·菜心", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "菜心(生)", "q": "200g", "k": 38.0, "p": 3.4, "g": 0.6}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 214.0, "p": 17.4, "g": 10.8, "id": "D15"}, {"name": "双蛋豆腐·白灼无油·生菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "生菜(生)", "q": "200g", "k": 26.0, "p": 2.6, "g": 0.4}, {"f": "北豆腐(生·可煎/蒸)", "q": "100g", "k": 116.0, "p": 12.2, "g": 4.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；豆腐 100g 补植物蛋白；白灼无油", "k": 318.0, "p": 28.8, "g": 15.4, "id": "D16"}, {"name": "双蛋·白灼无油·小白菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "小白菜(生)", "q": "200g", "k": 26.0, "p": 3.0, "g": 0.6}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 202.0, "p": 17.0, "g": 10.8, "id": "D17"}, {"name": "三蛋·白灼无油·韭菜", "items": [{"f": "煮鸡蛋", "q": "3个", "k": 210.0, "p": 19.5, "g": 15.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "韭菜(生)", "q": "200g", "k": 52.0, "p": 3.8, "g": 0.8}], "note": "鸡蛋3个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 298.0, "p": 24.3, "g": 16.0, "id": "D18"}, {"name": "双蛋·白灼无油·芹菜", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "芹菜(生)", "q": "200g", "k": 32.0, "p": 1.6, "g": 0.4}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；；白灼无油", "k": 208.0, "p": 15.6, "g": 10.6, "id": "D19"}, {"name": "双蛋豆腐·白灼无油·芥蓝", "items": [{"f": "煮鸡蛋", "q": "2个", "k": 140.0, "p": 13.0, "g": 10.0}, {"f": "白萝卜块(生)", "q": "200g", "k": 36.0, "p": 1.0, "g": 0.2}, {"f": "芥蓝(生·焯水)", "q": "200g", "k": 44.0, "p": 5.6, "g": 0.6}, {"f": "北豆腐(生·可煎/蒸)", "q": "100g", "k": 116.0, "p": 12.2, "g": 4.8}], "note": "鸡蛋2个；萝卜+绿叶菜各 200g 生重；豆腐 100g 补植物蛋白；白灼无油", "k": 336.0, "p": 31.8, "g": 15.6, "id": "D20"}], "female_N": [{"name": "原味巴旦木(干)", "items": [{"f": "原味巴旦木(干)", "q": "10g", "k": 60.0, "p": 2.0, "g": 5.4}], "note": "下午 4 点，约 7 颗", "k": 60.0, "p": 2.0, "g": 5.4, "id": "N01"}, {"name": "核桃仁(干)", "items": [{"f": "核桃仁(干)", "q": "10g", "k": 65.0, "p": 1.5, "g": 6.5}], "note": "约 2–3 瓣", "k": 65.0, "p": 1.5, "g": 6.5, "id": "N02"}, {"name": "原味腰果(干)", "items": [{"f": "原味腰果(干)", "q": "10g", "k": 58.0, "p": 2.0, "g": 4.6}], "note": "约 6 颗", "k": 58.0, "p": 2.0, "g": 4.6, "id": "N03"}, {"name": "原味开心果(干)", "items": [{"f": "原味开心果(干)", "q": "10g", "k": 58.0, "p": 2.0, "g": 4.5}], "note": "约 10 颗", "k": 58.0, "p": 2.0, "g": 4.5, "id": "N04"}, {"name": "无糖希腊酸奶", "items": [{"f": "无糖希腊酸奶", "q": "80g", "k": 76.0, "p": 8.0, "g": 2.4}], "note": "单独吃或拌一点肉桂粉", "k": 76.0, "p": 8.0, "g": 2.4, "id": "N05"}, {"name": "酸奶+蓝莓", "items": [{"f": "无糖希腊酸奶", "q": "80g", "k": 76.0, "p": 8.0, "g": 2.4}, {"f": "蓝莓", "q": "50g", "k": 28.5, "p": 0.3, "g": 0.1}], "note": "抗氧小加餐", "k": 104.5, "p": 8.3, "g": 2.5, "id": "N06"}, {"name": "全脂牛奶", "items": [{"f": "全脂牛奶", "q": "200g", "k": 130.0, "p": 6.0, "g": 7.2}], "note": "睡前一杯补钙", "k": 130.0, "p": 6.0, "g": 7.2, "id": "N07"}, {"name": "卤蛋", "items": [{"f": "卤蛋", "q": "1个", "k": 70.0, "p": 6.5, "g": 5.0}], "note": "便利店即食", "k": 70.0, "p": 6.5, "g": 5.0, "id": "N08"}, {"name": "卤豆干+黄瓜", "items": [{"f": "卤豆干", "q": "30g", "k": 45.0, "p": 4.8, "g": 2.7}, {"f": "黄瓜(生)", "q": "100g", "k": 16.0, "p": 0.7, "g": 0.2}], "note": "咸香组合", "k": 61.0, "p": 5.5, "g": 2.9, "id": "N09"}, {"name": "苹果 1 个", "items": [{"f": "苹果(可食)", "q": "180g", "k": 93.6, "p": 0.5, "g": 0.4}], "note": "带皮吃纤维多", "k": 93.6, "p": 0.5, "g": 0.4, "id": "N10"}, {"name": "橙子 1 个", "items": [{"f": "橙子(可食)", "q": "200g", "k": 96.0, "p": 1.8, "g": 0.4}], "note": "维 C 拉满", "k": 96.0, "p": 1.8, "g": 0.4, "id": "N11"}, {"name": "草莓", "items": [{"f": "草莓", "q": "200g", "k": 64.0, "p": 1.4, "g": 0.4}], "note": "低糖水果首选", "k": 64.0, "p": 1.4, "g": 0.4, "id": "N12"}, {"name": "圣女果", "items": [{"f": "圣女果", "q": "250g", "k": 62.5, "p": 2.5, "g": 0.5}], "note": "可当零嘴", "k": 62.5, "p": 2.5, "g": 0.5, "id": "N13"}, {"name": "香蕉半根", "items": [{"f": "香蕉(可食)", "q": "100g", "k": 88.0, "p": 1.3, "g": 0.3}], "note": "训练后快速补糖", "k": 88.0, "p": 1.3, "g": 0.3, "id": "N14"}]}, "greens": [["芹菜", 16, 0.8, "高纤维低卡，切段清炒配牛肉/豆干，口感脆"], ["韭菜", 26, 1.9, "炒蛋/炒豆芽很香；吸油，油控制在 3–5g"], ["小白菜", 13, 1.5, "钙含量不错，快炒或煮汤，菜帮切细易熟"], ["生菜", 13, 1.3, "白灼/涮锅/包肉吃都行，几乎不吸油"], ["油麦菜", 15, 1.4, "白灼淋少许油或蒜蓉清炒"], ["菠菜", 24, 2.6, "必须焯水去草酸（30 秒），再炒或凉拌"], ["上海青", 15, 1.3, "整棵对半切清炒，维生素 C 高"], ["菜心", 19, 1.7, "白灼最省事，淋生抽即可"], ["芥蓝", 22, 2.8, "焯水后蒜蓉炒，膳食纤维丰富"], ["西兰花", 34, 2.8, "蒸/焯 2 分钟，蛋白质含量在蔬菜里偏高"], ["空心菜", 24, 1.3, "蒜蓉大火快炒，梗叶分离更好吃"], ["茼蒿", 24, 1.5, "自带香气，清炒或涮锅，少油"], ["苋菜", 25, 2.8, "焯水凉拌，补铁补钙"], ["苦菊", 23, 1.8, "凉拌沙拉，配坚果/鸡胸很搭"], ["娃娃菜", 13, 1.1, "上汤/煮汤，水分足饱腹感强"]], "meta": {"female": {"title": "女生版 · 减脂 1300 kcal", "subtitle": "基础代谢按 1200 kcal · 目标 1200–1300 kcal/天 · 蛋白 ≥ 85g", "cap_hi": 1300, "cap_lo": 1200, "prot_floor": 85, "tag": "女生版", "default": {"ids": ["B18", "L13", "D12", "N06"], "kcal": 1270.0, "protein": 109.5}}}};
+const VER = "female";
+const SLOTS = DATA.slots;
+const META = DATA.meta[VER];
+const slotDefs = [
+  {id:"B", name:"早餐", icon:"🍳", note:"蛋+奶为基底，主食任选其一；想少油把蛋改成煮/蒸"},
+  {id:"L", name:"午餐", icon:"🍚", note:"主肉与主食可跨方案自由替换，菜随肉换"},
+  {id:"D", name:"晚餐", icon:"🥗", note:"多数方案已含萝卜 200g + 绿叶菜 200g"},
+  {id:"N", name:"加餐", icon:"🌰", note:"下午 4 点吃；训练日可选蛋白/碳水更高款"}
+];
+function fmt(n){ return Math.round(n*10)/10; }
+function oilFlag(o){ return o.items.some(i=>i.f.indexOf("食用油")>=0); }
+function selLabel(o){
+  return (oilFlag(o)?"🍳 ":"") + o.id + "  " + o.name + "   （" + fmt(o.k) + " kcal / 蛋白 " + fmt(o.p) + "g）";
+}
+const chosen = {};
+function buildGrid(){
+  const g = document.getElementById("mealGrid");
+  g.innerHTML = "";
+  for(const sd of slotDefs){
+    const list = SLOTS[VER+"_"+sd.id];
+    const card = document.createElement("div");
+    card.className = "card slot-"+sd.id;
+    let rows = "";
+    const selId = "sel_"+sd.id;
+    card.innerHTML =
+      "<h2>"+sd.icon+" "+sd.name+" <span class='tag'>"+list.length+" 个可替换方案</span></h2>"+
+      "<div class='hint'>"+sd.note+"</div>"+
+      "<select id='"+selId+"'></select>"+
+      "<div class='optinfo' id='opt_"+sd.id+"'></div>"+
+      "<div class='mealtotal' id='mt_"+sd.id+"'></div>";
+    g.appendChild(card);
+    const sel = document.getElementById(selId);
+    list.forEach((o,i)=>{
+      const opt=document.createElement("option");
+      opt.value=i; opt.textContent=selLabel(o);
+      sel.appendChild(opt);
+    });
+    chosen[sd.id]=0;
+    sel.addEventListener("change",()=>{ chosen[sd.id]=parseInt(sel.value,10); render(); });
+  }
+}
+function itemTable(o){
+  if(!o) return "";
+  let h="<table class='items'><tr><th>食材（生/熟已标注）</th><th class='num'>用量</th><th class='num'>kcal</th><th class='num'>蛋白g</th><th class='num'>脂肪g</th></tr>";
+  for(const it of o.items){
+    h+="<tr><td>"+it.f+"</td><td class='num'>"+it.q+"</td><td class='num'>"+fmt(it.k)+"</td><td class='num'>"+fmt(it.p)+"</td><td class='num'>"+fmt(it.g)+"</td></tr>";
+  }
+  h+="</table>";
+  return h;
+}
+function render(){
+  const capHi=META.cap_hi, capLo=META.cap_lo, pFloor=META.prot_floor;
+  let K=0,P=0,G=0;
+  for(const sd of slotDefs){
+    const list=SLOTS[VER+"_"+sd.id];
+    const o=list[chosen[sd.id]];
+    K+=o.k; P+=o.p; G+=o.g;
+    document.getElementById("opt_"+sd.id).innerHTML="<b>"+o.name+"</b>　"+o.note;
+    document.getElementById("mt_"+sd.id).innerHTML=
+      "<span class='chip'>热量 <b>"+fmt(o.k)+"</b> kcal</span>"+
+      "<span class='chip'>蛋白 <b>"+fmt(o.p)+"</b> g</span>"+
+      "<span class='chip'>脂肪 <b>"+fmt(o.g)+"</b> g</span>"+
+      "<span class='chip' style='margin-left:auto'>"+o.id+"</span>";
+    // 明细表插到方案名下方
+    const box=document.getElementById("opt_"+sd.id);
+    const tbl=document.createElement("div");
+    tbl.innerHTML=itemTable(o);
+    box.appendChild(tbl);
+  }
+  K=Math.round(K); P=Math.round(P*10)/10; G=Math.round(G*10)/10;
+  document.getElementById("sumK").textContent=K;
+  document.getElementById("sumP").textContent=P;
+  document.getElementById("sumG").textContent=G;
+  const v=document.getElementById("verdict");
+  const sub=document.getElementById("verdictSub");
+  let msgs=[];
+  if(K>capHi){ v.className="badge bad"; v.textContent="⚠️ 热量超标 "+(K-capHi)+" kcal";
+    msgs.push("当前上限 "+capHi+" kcal，请把某餐换成更小份方案"); }
+  else if(K<capLo){ v.className="badge warn"; v.textContent="⚠️ 热量偏低 "+(capLo-K)+" kcal";
+    msgs.push("可把主食/加餐换大份，或在今日组合中加大份量"); }
+  else { v.className="badge ok"; v.textContent="✅ 热量达标（"+capLo+"–"+capHi+"）";
+    if(P<pFloor) msgs.push("蛋白 "+P+"g 低于建议 "+pFloor+"g"); }
+  if(P>=pFloor){ sub.style.color="#15803d"; }
+  sub.innerHTML=msgs.length? msgs.join("；") : ("蛋白 "+P+" g ≥ "+pFloor+" g，达标 💪");
+}
+function buildGreens(){
+  const tb=document.getElementById("greenRows");
+  DATA.greens.forEach(g=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML="<td><b>"+g[0]+"</b></td><td>"+g[1]+"</td><td>"+g[2]+"</td><td>"+g[3]+"</td>";
+    tb.appendChild(tr);
+  });
+}
+// 默认组合
+function applyDefault(){
+  const ids=META.default.ids;
+  slotDefs.forEach((sd,idx)=>{
+    const want=ids[idx];
+    const list=SLOTS[VER+"_"+sd.id];
+    const pos=list.findIndex(o=>o.id===want);
+    if(pos>=0){ chosen[sd.id]=pos; document.getElementById("sel_"+sd.id).value=pos; }
+  });
+  render();
+  document.getElementById("verdictSub").innerHTML += "　｜默认组合已为你选好，可直接替换任一餐";
+}
+buildGrid(); buildGreens(); applyDefault();
+</script>
+</body>
+</html>
