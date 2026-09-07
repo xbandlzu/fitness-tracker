@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>减脂/增肌 餐次计算器</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#fdf2f8 0%,#eff6ff 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#1f2329}
+.box{max-width:760px;margin:24px;text-align:center}
+h1{font-size:30px;margin:0 0 6px}
+p.sub{color:#6b7280;margin-bottom:28px}
+.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.card{flex:1;min-width:260px;background:#fff;border-radius:18px;padding:26px 22px;text-decoration:none;color:#1f2329;box-shadow:0 8px 24px rgba(0,0,0,.08);transition:transform .15s}
+.card:hover{transform:translateY(-4px)}
+.card.w{ border-top:6px solid #d4457a}
+.card.m{ border-top:6px solid #2563eb}
+.card .em{font-size:40px}
+.card h2{margin:10px 0 4px;font-size:22px}
+.card p{color:#6b7280;font-size:13.5px;margin:6px 0}
+.chip{display:inline-block;background:#f1f5f9;border-radius:999px;padding:3px 10px;font-size:12px;margin:3px 4px 0 0;color:#334155}
+.foot{margin-top:26px;font-size:12.5px;color:#9ca3af}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>🍱 每日餐次计算器</h1>
+  <p class="sub">点选每餐方案 → 即时算出当天热量 / 蛋白 / 脂肪，并可展开查看每样食材的具体克重。</p>
+  <div class="cards">
+    <a class="card w" href="female-1300.html">
+      <div class="em">👩</div>
+      <h2>女生版 · 减脂</h2>
+      <p>1200–1300 kcal / 天<br>蛋白 ≥ 85 g（建议 90g+）<br>基础代谢按 1200 kcal</p>
+      <span class="chip">20 个早餐方案</span><span class="chip">20 个午餐方案</span><span class="chip">20 个晚餐方案</span><span class="chip">14 个加餐</span>
+    </a>
+    <a class="card m" href="male-2000.html">
+      <div class="em">👨</div>
+      <h2>男生版 · 增肌/维持</h2>
+      <p>1900–2080 kcal / 天<br>蛋白 ≥ 120 g<br>抗阻训练期参考</p>
+      <span class="chip">20 个早餐方案</span><span class="chip">20 个午餐方案</span><span class="chip">20 个晚餐方案</span><span class="chip">14 个加餐</span>
+    </a>
+  </div>
+  <p class="foot">口径：肉/菜=生重 · 米面薯=熟重 · 燕麦/坚果=干重 · 🍳=含油方案</p>
+</div>
+</body>
+</html>
